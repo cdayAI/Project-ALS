@@ -43,7 +43,7 @@ happens through partners, purchased assays, and collaboration.
 - [x] Research factory design (`docs_plan.md`)
 - [x] Disease & therapeutics landscape brief (`research/01_biology_and_therapeutics.md`)
 - [x] Public data resource survey with verified access (`research/03_data_resources.md`)
-- [ ] AI methods brief (in progress)
+- [x] AI methods brief (`research/02_ai_methods.md`)
 - [ ] Pilot Sprint #1: transcriptome-based drug repurposing loop on public ALS data
 
 ## Who this is for
