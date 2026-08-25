@@ -1,0 +1,40 @@
+# Experiment 001: transcriptome-based drug repurposing screen for ALS
+# Reproducibility contract: all parameters, dataset IDs and file paths live here.
+
+experiment_id: exp001_repurposing
+
+disease:
+  gse_id: GSE124439
+  raw_dir: data/gse124439            # per-sample gene-symbol count files (GSE124439_RAW.tar)
+  series_matrix: data/gse124439/series_matrix.txt
+  group_col: "sample group"
+  case_label: "ALS Spectrum MND"
+  control_label: "Non-Neurological Control"           # 'Other Neurological Disease' samples are excluded
+  min_count_per_million: 1.0         # keep genes with CPM > 1 in at least min_samples
+  min_samples: 17                    # smallest group size
+  de_method: moderated_t             # limma-style empirical-Bayes moderated t (numpy/scipy impl)
+
+lincs:
+  level5_gctx: data/lincs/GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz
+  sig_info: data/lincs/GSE92742_Broad_LINCS_sig_info.txt.gz
+  pert_info: data/lincs/GSE92742_Broad_LINCS_pert_info.txt.gz
+  gene_info: data/lincs/GSE92742_Broad_LINCS_gene_info.txt.gz
+  pert_type_filter: trt_cp           # small-molecule perturbagens only
+  gene_block_size: 500               # rows streamed per chunk when scoring
+  score_method: cosine_reversal      # -cosine(query, signature) on shared landmark/inferred genes
+  query_top_genes: null              # null = use all shared genes, weighted by signed statistic
+
+positive_controls:
+  # known neuro-active / immune-active compounds; ranks must be sensible for the method to be trusted
+  compounds: [riluzole, edaravone, dexamethasone, minocycline, sirolimus, rapamycin,
+              memantine, valproic acid, gabapentin, baclofen, prednisolone, ibuprofen,
+              aspirin, methylprednisolone, tacrolimus, cyclosporine]
+
+annotation:
+  top_n_drugs: 30
+  chembl_url: https://www.ebi.ac.uk/chembl/api/data/molecule.json
+  pubchem_url: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/properties/JSON
+  cache: outputs/annotation_cache.json
+
+outputs:
+  dir: outputs

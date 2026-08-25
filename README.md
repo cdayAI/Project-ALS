@@ -43,8 +43,9 @@ happens through partners, purchased assays, and collaboration.
 - [x] Research factory design (`docs_plan.md`)
 - [x] Disease & therapeutics landscape brief (`research/01_biology_and_therapeutics.md`)
 - [x] Public data resource survey with verified access (`research/03_data_resources.md`)
-- [ ] AI methods brief (in progress)
-- [ ] Pilot Sprint #1: transcriptome-based drug repurposing loop on public ALS data
+- [x] AI methods brief with honest capability ledger (`research/02_ai_methods.md`)
+- [x] Cross-brief synthesis & stream prioritization (`research/00_synthesis.md`)
+- [ ] Pilot Sprint #1: transcriptome-based drug repurposing loop (exp001 running)
 
 ## Who this is for
 

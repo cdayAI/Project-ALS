@@ -1,0 +1,8 @@
+# Raw datasets - downloaded by pipelines, never committed
+data/
+!data/inventory/
+# Experiment raw outputs (summaries and verdicts ARE committed)
+experiments/*/outputs/
+*.gctx.gz
+*.h5ad
+*.h5
