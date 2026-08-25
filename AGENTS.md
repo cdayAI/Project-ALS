@@ -1,0 +1,42 @@
+# AGENTS.md — Rules for AI contributors (Claude Code, Codex, Prime Agent, sub-agents)
+
+This repo is a multi-agent research factory. Humans review; agents do the work.
+Follow these rules exactly — they exist because agents already broke them once.
+
+## Hard rules
+1. **Never commit raw data.** `data/` is gitignored. Datasets are downloaded by
+   pipelines into `data/` and stay local. If `git status` shows a file >50 MB,
+   STOP — something is wrong.
+2. **Work on branches**, not main: `exp/<name>` for experiments,
+   `pipeline/<name>` for shared pipelines. Merge to main only via PR after an
+   adversarial review exists in `reviews/`.
+3. **Claim tasks on the board below** by editing this file in your branch
+   (`- [ ]` -> `- [~] your-name`). Never work on a task someone else claimed.
+4. **Experiments follow `experiments/_template/EXPERIMENT.md`**: config.yaml +
+   run.py + outputs/ + VERDICT.md. VERDICT stays PENDING until a reviewer agent
+   writes `reviews/<experiment>.md`. No self-certification.
+5. **Positive controls are mandatory.** A pipeline that cannot rediscover known
+   truth (documented per-experiment) produces no verdict at all.
+6. **Cite or it didn't happen**: research claims need PMIDs/URLs; code needs the
+   dataset IDs and parameter values that reproduce it.
+
+## Context to read first (in order)
+1. `README.md` - mission and layout
+2. `docs_plan.md` - factory design
+3. `research/00_synthesis.md` - what we're doing and why (10 min)
+4. `research/04_pilot_access_report.md` - verified data access
+
+## Task board
+- [x] Research briefs 01-04 (Prime Agent fleet) 
+- [x] Cross-brief synthesis (Prime Agent)
+- [~] exp001 repurposing screen (sprint1-repurposing agent - IN PROGRESS, owns experiments/exp001_repurposing/)
+- [ ] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
+      input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
+      Working query pattern already proven (see Prime Agent session notes / research briefs).
+      CLAIMED BY: (available)
+- [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
+      fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
+      plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
+- [ ] **exp001 adversarial review** - BLOCKED until exp001 completes. Reviewer must
+      check: multiple testing, batch effects (post-mortem tissue covariates!), 
+      positive control outcome, replication vs GSE255602/GSE261875.
