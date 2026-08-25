@@ -1,0 +1,84 @@
+# =============================================================================
+# pipelines/biomarker_enrichment/config.yaml
+# H-008 simulation framework: NfL-trajectory ML trial enrichment vs static
+# clinical enrichment vs no enrichment. Sample size for 80% power via bootstrap.
+#
+# DATA BOUNDARY: EVERYTHING IN THIS CONFIG DESCRIBES A **SIMULATION**.
+# No PRO-ACT records are read anywhere in run.py. Parameters below are
+# calibrated to published summaries of PRO-ACT / NfL literature (PMIDs listed
+# per block). Real-data validation is PENDING the PRO-ACT access request in
+# data/proact/APPLICATION_DRAFT.md.
+# =============================================================================
+
+seed: 20260825          # H-008 creation date as fixed seed (reproducibility)
+n_pool: 20000           # simulated screening pool (subject-level)
+
+# --- Latent disease progression ---------------------------------------------
+# lambda_i = true ALSFRS-R decline rate (points/month), subject-level.
+progression:
+  distribution: lognormal
+  log_mean: -0.223      # => median lambda = exp(-0.223) = 0.80 pts/month.
+                        # Calibrated to PRO-ACT placebo-arm median progression
+                        # ~0.7-1.1 pts/month (DREAM challenge, PMID 25362243;
+                        # masitinib DeltaFS strata, PMIDs 31280619, 34457038).
+  log_sd: 0.55          # between-subject heterogeneity; PRO-ACT rate
+                        # distributions are right-skewed, roughly log-normal.
+  min: 0.05             # plateau floor (pts/month)
+  max: 3.00             # ultra-fast ceiling
+
+baseline_alsfrsr:
+  mean: 38.0            # typical PRO-ACT enrolment total score (~38-40)
+  sd: 4.5
+  corr_with_log_lambda: -0.25   # faster progressors enter slightly lower
+
+measurement:
+  alsfrsr_visit_noise_sd: 1.5   # integer-score visit-to-visit noise (points);
+                                # consistent with PRO-ACT test-retest scatter.
+  early_window_months: 3        # "early slope" observation window at screening
+
+# --- NfL model (SIMULATED from published kinetics) ---------------------------
+nfl:
+  baseline_log_mean: 3.71       # geometric mean plasma NfL ~41 pg/mL at
+                                # enrolment (ALS ranges 30-60 pg/mL across
+                                # assays; meta-analyses PMIDs 34690913,
+                                # 38674431). Log10 units? NO - natural log.
+  beta_baseline: 0.60           # slope of log-NfL on log-lambda; chosen so
+                                # corr(logNfL0, lambda) ~= 0.65 (published
+                                # prognostic association strength).
+  eps_baseline_sd: 0.45         # residual assay+biology scatter (lognormal)
+  slope_gamma: 0.35             # early NfL-slope loading on log-lambda:
+                                # dynamics carry information BEYOND baseline
+                                # (kinetic trigger logic of ATLAS,
+                                # PMID 35585374; pre-onset rise PMIDs
+                                # 30014505, 31432691).
+  eps_slope_sd: 0.55            # limits incremental value -> falsifiable
+                                # (H-008 criterion 3 tests exactly this)
+
+# --- Trial design ------------------------------------------------------------
+trial:
+  duration_months: 12
+  endpoint: delta_alsfrsr_12mo   # change from baseline (negative = decline)
+  outcome_noise_sd_per_delta: 2.1 # sd of measurement error on the 12-mo delta
+                                  # (= sqrt(2) * visit noise, approx)
+  treatment_effect_pts_per_month: [0.15, 0.30, 0.50]
+        # absolute slowdown scenarios spanning H-008's stated realistic range
+        # 0.3-0.5 pts/month plus a conservative 0.15 sensitivity arm.
+        # ASSUMPTION - not measured data; see outputs header.
+  alpha: 0.05
+  target_power: 0.80
+  n_grid: [4, 6, 8, 12, 16, 24, 32, 45, 60, 80, 110, 150, 200, 260, 330, 420, 550, 700, 900]  # per arm
+  bootstrap_reps_per_n: 1500
+  enrich_fraction: 0.50         # fraction of pool retained by each strategy
+  target_band: [0.55, 1.70]     # pts/month: exclude predicted plateaus
+                                # (<0.55) and predicted ultra-fast (>1.70,
+                                # dropout/death risk); masitinib-style
+                                # 'normal progressor' banding.
+
+# --- Arms ---------------------------------------------------------------------
+# oracle  : ranks on TRUE lambda       -> positive control (upper bound)
+# noise   : ranks on pure noise        -> negative control (must show ~0 gain)
+# clinical_static: ridge ML on observed 0-3 mo ALSFRS-R slope + baseline score
+# nfl_ml  : ridge ML on log-baseline NfL + early NfL slope + clinical features
+arms: [none, noise, clinical_static, nfl_ml, oracle]
+
+outputs_dir: outputs/

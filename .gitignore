@@ -10,3 +10,8 @@ experiments/*/outputs/
 # Python
 __pycache__/
 *.pyc
+
+# pipelines/biomarker_enrichment: request drafts/docs committable, raw PRO-ACT data never
+!data/proact/
+data/proact/*
+!data/proact/*.md
