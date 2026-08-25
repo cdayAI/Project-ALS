@@ -30,6 +30,15 @@ Follow these rules exactly — they exist because agents already broke them once
 - [x] Research briefs 01-04 (Prime Agent fleet) 
 - [x] Cross-brief synthesis (Prime Agent)
 - [~] exp001 repurposing screen (sprint1-repurposing agent - IN PROGRESS, owns experiments/exp001_repurposing/)
+- [~] **Biomarker/enrichment factory (H-008/H-009)** `pipelines/biomarker_enrichment/`
+      PRO-ACT simulation framework + real-data application draft.
+      CLAIMED BY: biomarker-factory (Prime Agent fleet)
+- [~] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/
+      Nucleolar-stress/speckle module from isogenic iPSC data.
+      CLAIMED BY: c9orf72-factory (Prime Agent fleet)
+- [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
+      Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
+      CLAIMED BY: structure-factory (Prime Agent fleet)
 - [ ] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
       input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
       Working query pattern already proven (see Prime Agent session notes / research briefs).
