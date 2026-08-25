@@ -30,13 +30,46 @@ Follow these rules exactly — they exist because agents already broke them once
 - [x] Research briefs 01-04 (Prime Agent fleet) 
 - [x] Cross-brief synthesis (Prime Agent)
 - [~] exp001 repurposing screen (sprint1-repurposing agent - IN PROGRESS, owns experiments/exp001_repurposing/)
-- [~] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
+- [~] **Biomarker/enrichment factory (H-008/H-009)** `pipelines/biomarker_enrichment/`
+      PRO-ACT simulation framework + real-data application draft.
+      CLAIMED BY: biomarker-factory (Prime Agent fleet)
+- [~] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/
+      Nucleolar-stress/speckle module from isogenic iPSC data.
+      CLAIMED BY: c9orf72-factory (Prime Agent fleet)
+- [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
+      Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
+      CLAIMED BY: structure-factory (Prime Agent fleet)
+- [x] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
       input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
       Working query pattern already proven (see Prime Agent session notes / research briefs).
-      CLAIMED BY: claude (pipeline/trial-matcher branch) - IN PROGRESS
+      CLAIMED BY: claude (pipeline/trial-matcher branch) - DONE, independently reviewed
+      (reviews/trial_matcher.md). Real matching bugs found in both self-testing and
+      independent review; see README's Known limitations before extending this.
 - [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
       fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
       plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
 - [ ] **exp001 adversarial review** - BLOCKED until exp001 completes. Reviewer must
       check: multiple testing, batch effects (post-mortem tissue covariates!), 
       positive control outcome, replication vs GSE255602/GSE261875.
+
+## Hypothesis ledger (initial batch)
+- [x] Draft hypotheses/H-001..H-010 (hypothesis-drafter agent, branch `hypotheses/initial-batch`).
+      Coverage: 2 signature-reversal refinements of exp001 classes (H-001, H-002),
+      2 causal-target GWAS-x-druggable-genome (H-003 TBK1 axis, H-004 UNC13A/sQTL),
+      1 TDP-43 PTM modifier w/ perturbation-signature test path (H-005),
+      1 mitochondrial/axonal-transport node (H-006), 1 C9orf72 DPR countermeasure
+      w/ signature correlate (H-007), NfL-dynamics trial enrichment (H-008),
+      subtype-to-stratum enrichment bridge (H-009), reversal-context robustness
+      calibration for exp001 (H-010). All status: open. Not merged to main;
+      each awaits pipeline assignment and adversarial review per AGENTS.md rules.
+- [~] H-001/H-002 blocked-on: exp001 outputs (sprint1-repurposing agent) — refinement
+      queries are pre-registered against config.yaml positive controls.
+- [~] H-003/H-004 depend on: Stream A scaffolding `pipelines/causal_targets/`
+      (unclaimed; MinE DAC application should be started early per research/04).
+
+## Working-tree isolation (MANDATORY - incident 2026-08-25)
+Never share one checkout between agents. On task start run:
+  git worktree add ~/ALS-worktrees/<branch-slug> <branch>
+and work ONLY inside that directory. Merge to main via a separate temp
+worktree or PR. If you find another agent's uncommitted changes in your tree,
+do NOT checkout/reset over them - create your own worktree and report it.
