@@ -46,6 +46,7 @@ happens through partners, purchased assays, and collaboration.
 - [x] AI methods brief with honest capability ledger (`research/02_ai_methods.md`)
 - [x] Cross-brief synthesis & stream prioritization (`research/00_synthesis.md`)
 - [ ] Pilot Sprint #1: transcriptome-based drug repurposing loop (exp001 running)
+- [x] Stream C: patient-facing trial matcher (`tools/trial_matcher/`, `reviews/trial_matcher.md`)
 
 ## Who this is for
 

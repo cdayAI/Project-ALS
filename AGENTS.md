@@ -43,10 +43,12 @@ Follow these rules exactly — they exist because agents already broke them once
 - [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
       Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
       CLAIMED BY: structure-factory (Prime Agent fleet)
-- [ ] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
+- [x] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
       input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
       Working query pattern already proven (see Prime Agent session notes / research briefs).
-      CLAIMED BY: (available)
+      CLAIMED BY: claude (pipeline/trial-matcher branch) - DONE, independently reviewed
+      (reviews/trial_matcher.md). Real matching bugs found in both self-testing and
+      independent review; see README's Known limitations before extending this.
 - [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
       fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
       plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
