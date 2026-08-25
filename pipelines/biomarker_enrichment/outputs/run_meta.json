@@ -1,0 +1,11 @@
+{
+  "seed": 20260825,
+  "data_status": "SIMULATED_ONLY",
+  "pool_calibration": {
+    "corr_log_nfl_baseline_vs_log_lambda": 0.593,
+    "median_progression_pts_per_month": 0.797
+  },
+  "nested_model_p": {
+    "nfl_slope_beyond_baseline_F_pvalue": 1.4537165550807888e-96
+  }
+}

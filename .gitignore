@@ -6,3 +6,7 @@ experiments/*/outputs/
 *.gctx.gz
 *.h5ad
 *.h5
+# pipelines/biomarker_enrichment: request drafts/docs committable, raw PRO-ACT data never
+!data/proact/
+data/proact/*
+!data/proact/*.md
