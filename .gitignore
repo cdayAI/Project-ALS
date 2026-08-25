@@ -1,5 +1,5 @@
 # Raw datasets - downloaded by pipelines, never committed
-data/
+data/*
 !data/inventory/
 # Experiment raw outputs (summaries and verdicts ARE committed)
 experiments/*/outputs/
