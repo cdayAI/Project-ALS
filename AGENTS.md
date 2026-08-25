@@ -30,10 +30,10 @@ Follow these rules exactly — they exist because agents already broke them once
 - [x] Research briefs 01-04 (Prime Agent fleet) 
 - [x] Cross-brief synthesis (Prime Agent)
 - [~] exp001 repurposing screen (sprint1-repurposing agent - IN PROGRESS, owns experiments/exp001_repurposing/)
-- [ ] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
+- [~] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
       input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
       Working query pattern already proven (see Prime Agent session notes / research briefs).
-      CLAIMED BY: (available)
+      CLAIMED BY: claude (pipeline/trial-matcher branch) - IN PROGRESS
 - [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
       fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
       plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
