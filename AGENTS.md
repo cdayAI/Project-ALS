@@ -64,3 +64,10 @@ Follow these rules exactly — they exist because agents already broke them once
       queries are pre-registered against config.yaml positive controls.
 - [~] H-003/H-004 depend on: Stream A scaffolding `pipelines/causal_targets/`
       (unclaimed; MinE DAC application should be started early per research/04).
+
+## Working-tree isolation (MANDATORY - incident 2026-08-25)
+Never share one checkout between agents. On task start run:
+  git worktree add ~/ALS-worktrees/<branch-slug> <branch>
+and work ONLY inside that directory. Merge to main via a separate temp
+worktree or PR. If you find another agent's uncommitted changes in your tree,
+do NOT checkout/reset over them - create your own worktree and report it.
