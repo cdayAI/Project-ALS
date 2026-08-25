@@ -13,10 +13,14 @@ python trial_matcher.py --mutation sod1 --json > results.json
 ```
 
 Flags: `--condition` (default "Amyotrophic Lateral Sclerosis"), `--country`,
-`--mutation` (`sod1`, `c9orf72`, `tardbp`, `fus`, `atxn2`, `sporadic`),
-`--stage` (`early`, `late`), `--status` (default `RECRUITING`), `--limit`,
-`--strict`, `--json`. No API key, no dependencies beyond the Python 3
-standard library.
+`--mutation` (common: `sod1`, `c9orf72`, `tardbp`, `fus`, `atxn2`, `tbk1`,
+`optn`, `vcp`, `ubqln2`, `ang`, `pfn1`, `nek1`, `matr3`, `sporadic` -- but
+any gene name works, matched verbatim if not in that list), `--stage`
+(common: `early`, `late` -- any free-text cue also works), `--status`
+(default `RECRUITING`), `--limit`, `--json`. No API key, no dependencies
+beyond the Python 3 standard library. Exit code is 1 if ClinicalTrials.gov
+could not be reached at all (a real network/API failure); 0 with a
+possibly-empty result list otherwise.
 
 ## Data source / reproducibility contract (AGENTS.md rule 6)
 
@@ -32,54 +36,73 @@ standard library.
 
 ## What this tool does NOT do
 
-- **It does not determine eligibility.** It ranks trials by keyword
-  proximity in free-text `EligibilityCriteria`, which cannot reliably parse
-  negation or scope. See "Known limitations" below for two real, confirmed
-  failure cases found during validation.
+- **It does not determine eligibility.** It ranks trials using public
+  metadata and keyword proximity in free-text `EligibilityCriteria`, which
+  cannot reliably parse negation or clause scope. See "Known limitations."
+- `--country` filtering trusts ClinicalTrials.gov's `query.locn` text
+  match, which can match a US state name against a same-named country (see
+  finding 3 below); the tool cross-checks each result's actual location
+  list before claiming a country match, and widens to a global search with
+  an explicit note if nothing genuinely matches.
 - It does not check drug interactions, insurance, travel feasibility, or
   anything beyond what ClinicalTrials.gov publishes.
 - It is not a substitute for talking to a neurologist/ALS clinic or the
   trial site's own contact (listed at each result's URL).
 
-## Known limitations (found during validation, not theoretical)
+## Known limitations
 
-Mutation/stage matching is plain keyword + negation-window heuristics over
-free text (see `_find_with_negation`, `split_eligibility` in
-`trial_matcher.py`), not real NLP. Three real trials exposed exactly why
-this is a floor, not a solved problem -- full detail in
-`reviews/trial_matcher.md`:
+This tool went through two rounds of adversarial testing: self-testing
+during development, then an independent review (per `AGENTS.md` rule 4 --
+"no self-certification"). The independent review found the self-tested
+version's own positive-control trial (see below) was itself badly
+mis-scored, which is why mutation/stage matching no longer emits a
+confident "this trial EXCLUDES you" verdict. Full findings and disposition
+are in `reviews/trial_matcher.md`. Summary of what's fixed vs. still true:
 
-1. **False positive** (fixed): a trial listed "Confirmed mutation in the
-   SOD1, FUS or C9orf72 gene" under *Exclusion* Criteria; naive keyword
-   matching scored it as a good SOD1 match. Fixed by splitting eligibility
-   text on the "Exclusion Criteria" heading and scoring exclusion-section
-   hits as strongly negative.
-2. **False positive, different shape** (fixed): a trial titled "Tofersen in
-   **Non-SOD1** ALS" required inclusion criteria "testing **negative for**
-   SOD1" -- negation *inside* the Inclusion section, invisible to a
-   section-based split alone. Fixed with a negation-cue window check
-   around each keyword match.
-3. **False negative** (documented, not fixed -- fundamentally hard): a
-   trial explicitly *for* SOD1-ALS patients scored strongly *negative*
-   because its exclusion criteria mention "SOD1-ALS" while excluding
-   *concurrent enrollment in another trial*, not excluding the mutation.
-   No keyword-window heuristic distinguishes "excluding people who have
-   X and are also doing Y" from "excluding people who have X". This is a
-   real semantic-parsing problem; `--strict` mode can silently hide a
-   genuinely strong match because of it. **Do not trust `--strict` mode to
-   be complete. Always read the full ranked list, non-strict, or the
-   criteria text yourself.**
+**Fixed:**
+1. A trial listed "Confirmed mutation in the SOD1, FUS or C9orf72 gene"
+   under *Exclusion* Criteria; naive whole-text keyword matching scored it
+   as a good SOD1 match.
+2. A trial titled "Tofersen in Non-SOD1 ALS" required inclusion criteria
+   "testing negative for SOD1" -- negation *inside* the Inclusion section.
+3. A country filter for "Georgia" (the country) returned only trials
+   located in the US state of Georgia, with no indication of the mismatch.
+4. `--mutation`/`--stage` were restricted to a fixed choice list, hard-
+   blocking real ALS genes (TBK1, OPTN, VCP, ...) not on it.
+5. A ClinicalTrials.gov network/API failure was indistinguishable from "0
+   trials found" -- meaning an outage could be reported as "no ALS trials
+   exist anywhere". Now raises a distinct error with a non-zero exit code.
 
-Given (1)-(3), the scores and notes are a reading-priority aid, not a
-filter. This is why the CLI prints a disclaimer to stderr (and embeds one
-in `--json` output) on every run, and why `--strict` carries an explicit
-danger warning in `--help`.
+**Still true, not fixable by keyword heuristics (fundamental, not a bug):**
+Keyword + negation-window matching cannot parse *why* a mutation is
+mentioned near "exclusion". Two independently confirmed shapes:
+- A trial explicitly *for* SOD1-ALS patients (a tofersen safety study)
+  mentions "SOD1-ALS" in its exclusion criteria only to exclude
+  *concurrent enrollment in another trial* -- not the mutation itself.
+- A trial excluding SOD1/FUS carriers explains why with "known absence of
+  TDP-43 pathology" -- for a `--mutation tardbp` search this reads as a
+  TARDBP exclusion signal when it's actually irrelevant to TARDBP
+  patients.
+- A trial with an explicit carve-out ("...except for TARDBP gene
+  variants") inside otherwise-exclusionary text needs a human to read the
+  actual clause to see the carve-out.
+
+**Because of this, mutation and stage notes now quote the actual source
+sentence instead of asserting a verdict, and scores use small +-1 weights
+for text-derived signals (vs. larger weights for structured data like
+country/phase) so a wrong call nudges rank instead of burying a genuinely
+strong match.** There is deliberately no hide-non-matches / `--strict`
+mode: an earlier version had one, and the independent review proved it
+could silently hide the single best-matching trial for a real scenario.
 
 ## Positive control
 
-Riluzole and tofersen are the two FDA-approved ALS drugs with the clearest
-public trial footprint (tofersen post-marketing/safety studies are
-explicitly SOD1-targeted). A working query for `--mutation sod1` should
-surface a tofersen-related SOD1 study somewhere in its (non-strict)
-results -- confirmed manually during validation (NCT07259980). If a future
-change to this tool makes that stop being true, treat it as a regression.
+Tofersen is the FDA-approved SOD1-targeted ASO with the clearest public
+trial footprint. `--mutation sod1` reliably surfaces a tofersen/SOD1 study
+(NCT07259980) in its results -- but note its *score* is intentionally
+unremarkable (not high) precisely because of the fundamental limitation
+above: this is the trial that exposed the problem, not one the scoring
+gets confidently right. The real check is "does it appear, with its
+mutation note quoting the actual sentence for a human to read" -- not
+"does it score highest". If a future change makes it stop appearing at
+all, or makes it score a confident negative, treat that as a regression.
