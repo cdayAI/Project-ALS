@@ -1,0 +1,16 @@
+effect_pts_per_month,arm,n_per_arm_for_80pct_power,sample_size_reduction_vs_none,patients_screened_per_enrolled
+0.15,none,186.5,0.0,2.0
+0.15,noise,186.9,-0.002,2.0
+0.15,clinical_static,153.1,0.179,2.0
+0.15,nfl_ml,126.7,0.321,2.0
+0.15,oracle,56.1,0.699,2.0
+0.3,none,40.2,0.0,2.0
+0.3,noise,42.2,-0.05,2.0
+0.3,clinical_static,34.4,0.145,2.0
+0.3,nfl_ml,28.7,0.285,2.0
+0.3,oracle,14.0,0.653,2.0
+0.5,none,12.0,0.0,2.0
+0.5,noise,12.3,-0.023,2.0
+0.5,clinical_static,11.1,0.08,2.0
+0.5,nfl_ml,9.4,0.221,2.0
+0.5,oracle,5.6,0.535,2.0

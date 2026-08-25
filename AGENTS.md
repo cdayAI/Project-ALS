@@ -33,6 +33,10 @@ Follow these rules exactly — they exist because agents already broke them once
 - [~] **Biomarker/enrichment factory (H-008/H-009)** `pipelines/biomarker_enrichment/`
       PRO-ACT simulation framework + real-data application draft.
       CLAIMED BY: biomarker-factory (Prime Agent fleet)
+      STATUS: simulation framework runs end-to-end on SIMULATED data (controls
+      pass); data/proact/APPLICATION_DRAFT.md ready for human sign-off;
+      experiments/exp002_nfl_enrichment/EXPERIMENT.md skeleton pre-registered.
+      Real-data validation blocked on PRO-ACT access.
 - [~] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/
       Nucleolar-stress/speckle module from isogenic iPSC data.
       CLAIMED BY: c9orf72-factory (Prime Agent fleet)
