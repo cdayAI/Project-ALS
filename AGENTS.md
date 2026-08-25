@@ -40,3 +40,18 @@ Follow these rules exactly — they exist because agents already broke them once
 - [ ] **exp001 adversarial review** - BLOCKED until exp001 completes. Reviewer must
       check: multiple testing, batch effects (post-mortem tissue covariates!), 
       positive control outcome, replication vs GSE255602/GSE261875.
+
+## Hypothesis ledger (initial batch)
+- [x] Draft hypotheses/H-001..H-010 (hypothesis-drafter agent, branch `hypotheses/initial-batch`).
+      Coverage: 2 signature-reversal refinements of exp001 classes (H-001, H-002),
+      2 causal-target GWAS-x-druggable-genome (H-003 TBK1 axis, H-004 UNC13A/sQTL),
+      1 TDP-43 PTM modifier w/ perturbation-signature test path (H-005),
+      1 mitochondrial/axonal-transport node (H-006), 1 C9orf72 DPR countermeasure
+      w/ signature correlate (H-007), NfL-dynamics trial enrichment (H-008),
+      subtype-to-stratum enrichment bridge (H-009), reversal-context robustness
+      calibration for exp001 (H-010). All status: open. Not merged to main;
+      each awaits pipeline assignment and adversarial review per AGENTS.md rules.
+- [~] H-001/H-002 blocked-on: exp001 outputs (sprint1-repurposing agent) — refinement
+      queries are pre-registered against config.yaml positive controls.
+- [~] H-003/H-004 depend on: Stream A scaffolding `pipelines/causal_targets/`
+      (unclaimed; MinE DAC application should be started early per research/04).
