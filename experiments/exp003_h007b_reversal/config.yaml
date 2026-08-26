@@ -1,0 +1,68 @@
+# Experiment: exp003_h007b_reversal
+id: exp003_h007b_reversal
+hypothesis: H-007b
+branch: exp/h007-c9orf72-module
+created: 2026-08-25
+owner_agent: c9orf72-factory
+
+pre_registration_note: >
+  Falsification criteria below were committed to hypotheses/H-007b.md (commit 472e32c)
+  BEFORE any reversal scoring was run. This config restates them verbatim-in-substance.
+
+module_definition:
+  name: cytoskeletal_ECM_synaptic_module
+  go_terms:
+    cytoskeleton_organization: GO:0007010
+    extracellular_matrix: GO:0031012
+    synapse: GO:0045202
+    cell_adhesion: GO:0007155
+  propagation: descendants via obo is_a closure (goa_human.gaf + go-basic.obo)
+  direction_prior:
+    replicated_signal: down-regulation in mutant vs isogenic control
+    (GSE283507 fold 1.66 among down genes P=0.0001; GSE303931 paper headline FLNB loss-of-function)
+
+datasets_local:
+  gse303931: data/gse303931/   # C9orf72 isogenic iCNs, mutant vs control, n=12
+  gse283507: data/gse283507/   # TARDBP M337V +/- DRD2 KO iPSC-MNs, DMSO/ROPI x 6H/36H/84H, n=54
+
+lincs:
+  level5_gctx: data/lincs/GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx  # READ-ONLY
+  gene_meta: GSE92742_Broad_LINCS_gene_info.txt.gz   # pr_gene_id <-> pr_gene_symbol
+  sig_meta: GSE92742_Broad_LINCS_sig_info.txt.gz     # sig_id -> pert_iname/cell/dose/time
+  pert_meta: GSE92742_Broad_LINCS_pert_info.txt.gz
+
+scoring:
+  method: -cosine between query vector and each Level5 MODZ signature (higher = reversal)
+  queries:
+    q1_c9orf72: "signed t-statistics, GSE303931 mutant-vs-control, all tested genes mapped to LINCS gene space"
+    q2_tardbp: "signed t-statistics, GSE283507 TDP43M337V/+ DMSO vs WT DMSO (all time points, model y ~ genotype + time)"
+  aggregation: mean reversal score per pert_iname across signatures; also report per-cell-line means
+
+falsification_criteria_from_H-007b:   # PRE-REGISTERED before scoring
+  FC-A_module_enrichment:
+    text: "cytoskeletal/ECM/synaptic GO sets must show >=1.5-fold enrichment (perm P<=0.05)
+           in mutant-vs-control DE lists in >=2 independent datasets"
+    status_at_preregistration: PASSED (GSE303931 paper headline + GSE283507 fold 1.09/1.66, P=0.0001)
+  FC-B_treatment_response:
+    text: "module must respond to an intervention with known in-vitro rescue efficacy:
+           ropinirole DMSO-vs-ROPI within-genotype module-score change in >=2 of 3 genotypes.
+           Interpretation note: only 2 of 3 genotypes carry the mutation (RC802 = WT negative
+           control); the pre-registered wording is evaluated against both disease genotypes,
+           with WT reported as the no-rescue-expected control."
+    metric: "module deviation score M = mean log2FC(mutant-vs-control) over module genes per
+             genotype/treatment/time contrast; rescue index R = (M_ROPI - M_DMSO)_genotype -
+             (M_ROPI - M_DMSO)_WT; rescue = R > 0"
+  FC-C_translational_bar:
+    text: "top-50 aggregated reversal candidates must contain >=1 FDA-approved/on-market
+           compound with known CNS penetration after ChEMBL/PubChem annotation"
+  FC-D_cross_dataset_consistency_positive_control:
+    role: positive control (AGENTS.md rule 5) - pipeline must rediscover known truth
+    text: "two genotype-defined disease signatures (C9orf72 and TARDBP) must produce
+           correlated perturbagen-level reversal rankings: Spearman rho >= 0.10 on the
+           top-1000-by-any-query union, permutation-calibrated. If the two queries yield
+           unrelated drug lists, the scoring measures noise."
+    null: "within-query gene-label permutations (n=200, seed 20260825) -> empirical p"
+
+outputs_contract:
+  outputs/: raw scores, per-signature tables (gitignored)
+  results/: aggregated perturbagen rankings, FC test outcomes, annotations (committed)
