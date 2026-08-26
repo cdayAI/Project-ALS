@@ -52,7 +52,9 @@ Follow these rules exactly — they exist because agents already broke them once
 - [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
       fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
       plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
-- [ ] **exp001 adversarial review** - BLOCKED until exp001 completes. Reviewer must
+- [x] **exp001 adversarial review** - DONE 2026-08-25: KILLED (see reviews/exp001_review.md,
+      branch reviews/exp001). Positive-control gate fails exposure matching; top hits do not
+      replicate vs GSE255602. Retry requires H-001 deconvolution + null-calibrated ranking. Reviewer must
       check: multiple testing, batch effects (post-mortem tissue covariates!), 
       positive control outcome, replication vs GSE255602/GSE261875.
 
