@@ -37,9 +37,14 @@ Follow these rules exactly — they exist because agents already broke them once
       pass); data/proact/APPLICATION_DRAFT.md ready for human sign-off;
       experiments/exp002_nfl_enrichment/EXPERIMENT.md skeleton pre-registered.
       Real-data validation blocked on PRO-ACT access.
-- [~] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/
-      Nucleolar-stress/speckle module from isogenic iPSC data.
-      CLAIMED BY: c9orf72-factory (Prime Agent fleet)
+- [x] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/ + data/gse283507/
+      Nucleolar-stress/speckle module falsified on 2-dataset test; VERDICT KILLED
+      (exp002_c9orf72_module); replacement drafted (hypotheses/H-007b.md).
+      DONE BY: c9orf72-factory (merged 4b63a9a)
+- [~] **Perturbation signature reversal pipeline (H-007b)** `pipelines/perturbation_signatures/`
+      + exp003_h007b_reversal. LINCS Level5 streaming reversal scoring of the
+      cytoskeletal/ECM/synaptic iPSC module; GCTX stack read-only.
+      CLAIMED BY: c9orf72-factory (authorized by parent, agentmsg_a6ef7572)
 - [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
       Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
       STATUS: DONE pending review. target_shortlist.md (12 AF-verified folded domains), SETUP.md, Boltz-2 venv installed; weights cached ~6.2 GB (<10 GB cap); TBK1-KD + 4IM0-ligand smoke test PASSED (CPU 58 min, iptm 0.96, ligand rediscovers hinge/ATP pocket). DiffDock deferred (>10 GB cumulative, CPU-only). 
