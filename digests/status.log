@@ -23,3 +23,4 @@
 [heartbeat 2026-08-26 07:45 EDT] streama-coloc running but no writes in 90min (likely reading large sumstats or stalled). One more tolerant cycle, then checkpoint-demand message per new discipline. Hygiene clean.
 [heartbeat 2026-08-26 08:25 EDT] streama-coloc UN-STUCK: exp005_coloc/ scaffold created with PRE_REGISTRATION.md + config.yaml + extract_loci.py (criteria-first order being followed). Silent period was presumably sumstats parsing. No intervention needed. Hygiene clean.
 [heartbeat 2026-08-26 08:50 EDT] streama-coloc actively writing (extract_loci.py + config.yaml updated <30min). Pre-registration in place. Hygiene clean. Nothing to intervene.
+[heartbeat 2026-08-26 09:55 EDT] exp005: last write 08:28 (extract_loci.py); silent ~60min - consistent with single-threaded locus extraction from compressed multi-GB sumstats. Tolerant cycle granted (computation, not a wedge - scaffold/code exist and are recent). Ping if silent again next cycle. Hygiene clean.
