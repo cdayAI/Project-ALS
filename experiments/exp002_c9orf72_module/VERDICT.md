@@ -36,6 +36,16 @@ is cross-genotype replication of module character, not of DPR specificity; (b) d
 matrix has near-zero within-group variance (median within-group log2TPM variance ~0.019), so
 its P-values/t-stats are inflated artifacts - we treat it as directional evidence only.
 
+## REVIEWER UPDATE (reviews/exp002_review.md, 2026-08-25)
+
+Independent review CONFIRMS KILLED for H-007. Notes: (a) the kill stands on GSE303931
+alone; (b) the GSE283507 arm is non-evidentiary as executed - committed CSVs imply a
+~4,484-gene background vs 16,253 in dataset 1 and collapsed GO sets (754->138, 516->89,
+DPR-curated 30->5), contradicting the 'identical protocol' claim, and its analysis code
+was never committed; reprocess from raw counts before any downstream use; (c) H-007b is
+downgraded to NEEDS-DATA pending out-of-sample data, count-level reprocessing, and
+conjunctive/effect-size criteria replacing the lowered disjunctive 1.5-fold bar.
+
 ## What DID replicate -> replacement hypothesis H-007b
 
 Cytoskeletal/ECM/synapse/cell-adhesion gene sets are significantly enriched in the
