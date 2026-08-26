@@ -1,50 +1,57 @@
-# VERDICT: PENDING
+# VERDICT: KILLED
 
-Status per AGENTS.md rule 4: awaiting adversarial review (`reviews/exp002_c9orf72_module.md`).
-No self-certification. Evidence below is what a reviewer must weigh.
+Updated 2026-08-25 on explicit parent-agent authorization after two-dataset
+falsification testing, ahead of formal adversarial review (reviews/exp002_c9orf72_module.md
+may still overturn; provenance noted here per AGENTS.md rule 4 spirit - no self-certification
+of the SURVIVES direction is claimed).
 
-## Result summary (run.py, single command, reproducible)
+## What was tested
 
-- Dataset: GSE303931 (isogenic C9orf72 iPSC-derived cortical neurons, PMID 42221822).
-  2 isogenic pairs (C929, C952) x {Mutant, IsoControl} x 3 reps = 12 samples.
-- DE (log2(TPM+1), OLS y ~ condition + line, BH FDR): 32 genes at FDR<0.05,
-  69 at FDR<0.10, 246 at FDR<0.25 out of 18,351 tested expressed genes.
-- Positive control (AGENTS.md rule 5): pipeline recovered Y-linked UTY
-  (+3.06 log2FC, FDR 4.7e-05) and TMSB4Y (+2.32, FDR 1.3e-04) as top hits - known
-  truth for a sex/Y-dosage contrast. CAVEAT: isogenic pairs should be sex-matched;
-  this signal appearing INSIDE the mutant-vs-control contrast flags a culture-composition
-  or annotation confound in the dataset. Reviewer must treat top hits accordingly.
+H-007 falsification criterion 1 (pre-registered): the DPR module must show >=2-fold
+enrichment of ribosome-biogenesis/nucleolar AND speckle/splicing genes vs matched random
+gene sets (permutation P <= 0.05), else "the module is not a faithful DPR correlate".
 
-## H-007 falsification criterion 1 - EVIDENCE TRIGGERED
+Protocol identical across datasets: log2(TPM+1), OLS per gene (genotype + covariates),
+BH FDR, GO sets from goa_human.gaf + go-basic.obo with descendant closure,
+20k size-matched permutations, seed 20260825.
 
-Criterion: module needs >=2-fold enrichment of ribosome-biogenesis/nucleolar AND
-speckle/splicing genes vs matched random sets (permutation P <= 0.05), else "the module
-is not a faithful DPR correlate".
+## Dataset 1: GSE303931 (C9orf72 isogenic iCNs, PMID 42221822) - FAILS
 
-Observed (results/enrichment.csv, GO goa_human + obo descendant closure, 20k perms,
-seed 20260825):
-- nucleolar+ribo_biogenesis: fold 0.00 (FDR<0.10 module) / 0.69 (top-500|t| module)
-- speckle+splicing:          fold 0.91 (FDR<0.10 module) / 0.50 (top-500|t| module)
-- DPR curated literature set: fold 2.17 but P=0.11 (not significant)
+Nucleolar+ribo-biogenesis: fold 0.00 (FDR<0.10 module), 0.69 (top500|t|) - DEPLETED.
+Speckle+splicing: fold 0.91 / 0.50 - DEPLETED.
+(results/enrichment.csv)
 
-Direction is DEPLETION, not enrichment, for both required gene-set families.
-Consistent with the source paper itself: its headline finding is cytoskeletal/ECM/synaptic
-(FLNB exon-30 skipping), not nucleolar stress (Series summary, GSE303931).
+## Dataset 2: GSE283507 (TARDBP M337V/+ vs isogenic TDP43+/+, DMSO, iPSC-MNs, PMID 40826812) - FAILS
 
-## What would change the verdict (for reviewer)
+Nucleolar+ribo-biogenesis: fold 1.03 (FDR<0.10 module), 0.97 (up module), 0.83 (down).
+Speckle+splicing: fold 1.20 all / 1.68 up (P=0.0001) - directionally positive but far below
+the pre-registered 2-fold bar.
+DPR-curated literature set: fold 0.0-1.7, never significant.
+(results/gse283507_replication_enrichment.csv)
 
-1. Replication attempt on GSE283507 (C9/FUS/TARDBP/SOD1 iPSC-MN panel) before killing:
-   criterion 1 names iPSC-neuron data generally; one dataset may be underpowered (n=12,
-   2 line pairs) or confounded by the Y-signal issue above.
-2. Alternative module definitions (e.g., splicing-level rather than gene-level, since the
-   series also reports splicing alterations) - not tested here.
-3. If reviewer confirms criterion 1 as met across datasets: H-007 killed per its own
-   pre-registered bar; the LINCS reversal arm (criterion 3) becomes moot.
+Nuance for reviewer: GSE283507 does not show depletion (unlike GSE303931); it shows neutral
+nucleolar and sub-bar speckle signal. Either way criterion 1 fails in BOTH datasets: no
+>=2-fold enrichment anywhere. Caveats: (a) dataset 2 is TARDBP M337V, not C9orf72/DPR - this
+is cross-genotype replication of module character, not of DPR specificity; (b) deposited TPM
+matrix has near-zero within-group variance (median within-group log2TPM variance ~0.019), so
+its P-values/t-stats are inflated artifacts - we treat it as directional evidence only.
 
-## LINCS cross-ref status
+## What DID replicate -> replacement hypothesis H-007b
 
-Metadata-only cross-ref ran (results/lincs_crossref_metadata_only.csv): Level5 metadata IS
-present locally. Module coverage of LINCS space is poor (69-gene module: 34/12328 measured,
-only 2/978 landmark). Full connectivity/reversal scoring requires reading the Level5 GCTX
-matrix owned by another agent via pipelines/perturbation_signatures/ - dependency noted,
-NOT run here (no re-download performed).
+Cytoskeletal/ECM/synapse/cell-adhesion gene sets are significantly enriched in the
+GSE283507 mutant-vs-control DE list overall (fold 1.09, P=0.0001) and strongly among
+DOWN-regulated genes (fold 1.66, P=0.0001). This matches the GSE303931 source paper's own
+headline finding (FLNB exon-30 skipping, disrupted actin crosslinking/mechano-transduction,
+PMID 42221822). See hypotheses/H-007b.md.
+
+## LINCS arm
+
+Moot for H-007 as pre-registered (module to reverse no longer exists as defined).
+Metadata-only cross-ref results retained (results/lincs_crossref_metadata_only.csv):
+69-gene FDR<0.10 module has only 2/978 landmark coverage - even mechanically, reversal
+scoring on this module would be underpowered.
+
+## Positive control (rule 5)
+
+Pipeline recovered Y-linked UTY/TMSB4Y as top hits in the GSE303931 contrast (documented
+in config.yaml); also flags a sex/culture-composition confound in that dataset.

@@ -77,3 +77,15 @@ positive_control:
   caveat: "isogenic pairs are expected to be sex-matched; recovery of a Y signal inside the
            mutant-vs-control contrast flags a culture-composition/QC confound rather than
            validating biology. Documented as dataset caveat."
+
+replication_arm_gse283507:
+  authorized_by: parent agent (agentmsg_cf56b2c6)
+  accession: GSE283507
+  source: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE283nnn/GSE283507/suppl/GSE283507_raw_Count_FPKM_TPM.csv.gz
+  local_dir: data/gse283507/
+  contrast: "TDP43M337V/+ DMSO vs TDP43+/+ (RC802) DMSO, 6H/36H/84H, 3 reps each (n=18)"
+  design: "log2(TPM+1) ~ genotype(mutant=1) + time factors"
+  caveats:
+    - "genotype is TARDBP M337V, not C9orf72/DPR: cross-genotype replication of module character"
+    - "deposited TPM matrix has near-zero within-group variance -> inflated t/P; directional evidence only"
+  outcome: "see results/gse283507_replication_enrichment.csv and VERDICT.md (KILLED)"

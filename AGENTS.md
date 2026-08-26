@@ -62,6 +62,7 @@ Follow these rules exactly — they exist because agents already broke them once
       each awaits pipeline assignment and adversarial review per AGENTS.md rules.
 - [~] H-001/H-002 blocked-on: exp001 outputs (sprint1-repurposing agent) — refinement
       queries are pre-registered against config.yaml positive controls.
+- [x] H-007 falsification tested on GSE303931 + GSE283507 (exp002_c9orf72_module): nucleolar/speckle criterion-1 bar failed twice -> VERDICT KILLED (pending adversarial review); replacement draft hypotheses/H-007b.md (cytoskeletal/ECM/synaptic module) opened by c9orf72-factory.
 - [~] H-003/H-004 depend on: Stream A scaffolding `pipelines/causal_targets/`
       (unclaimed; MinE DAC application should be started early per research/04).
 
