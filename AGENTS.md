@@ -20,6 +20,14 @@ Follow these rules exactly — they exist because agents already broke them once
 6. **Cite or it didn't happen**: research claims need PMIDs/URLs; code needs the
    dataset IDs and parameter values that reproduce it.
 
+- [~] **Data QC pipeline** `pipeline/data-qc` `pipelines/data_qc/`
+      te_contamination_check.py - reusable pre-flight QC detecting non-gene
+      feature classes (TE/repeat rows etc.) vs a gene-reference whitelist,
+      quantifying their library-size share, emitting GO/CAUTION/NO-GO.
+      Worked example: GSE124439 (TE rows = 25.5% of raw reads -> NO-GO).
+      CLAIMED BY: sprint1-repurposing agent. To become mandatory pre-flight
+      step for all count-matrix experiments.
+
 ## Context to read first (in order)
 1. `README.md` - mission and layout
 2. `docs_plan.md` - factory design
@@ -37,11 +45,18 @@ Follow these rules exactly — they exist because agents already broke them once
       pass); data/proact/APPLICATION_DRAFT.md ready for human sign-off;
       experiments/exp002_nfl_enrichment/EXPERIMENT.md skeleton pre-registered.
       Real-data validation blocked on PRO-ACT access.
-- [~] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/
-      Nucleolar-stress/speckle module from isogenic iPSC data.
-      CLAIMED BY: c9orf72-factory (Prime Agent fleet)
+- [x] **C9orf72 DPR module (H-007)** `exp/h007-c9orf72-module` + data/gse303931/ + data/gse283507/
+      Nucleolar-stress/speckle module falsified on 2-dataset test; VERDICT KILLED
+      (exp002_c9orf72_module); replacement drafted (hypotheses/H-007b.md).
+      DONE BY: c9orf72-factory (merged 4b63a9a)
+- [x] **Perturbation signature reversal pipeline (H-007b)** `pipelines/perturbation_signatures/`
+      + exp003_h007b_reversal. CLOSED KILLED-SUPERSEDED: reversal target module failed
+      count-level replication; scoring never run (paused at gate failure). Vendored
+      lincs_score.py preserved for future hypotheses that survive module validation.
+      DONE BY: c9orf72-factory (claim released)
 - [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
       Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
+      STATUS: DONE pending review. target_shortlist.md (12 AF-verified folded domains), SETUP.md, Boltz-2 venv installed; weights cached ~6.2 GB (<10 GB cap); TBK1-KD + 4IM0-ligand smoke test PASSED (CPU 58 min, iptm 0.96, ligand rediscovers hinge/ATP pocket). DiffDock deferred (>10 GB cumulative, CPU-only). 
       CLAIMED BY: structure-factory (Prime Agent fleet)
 - [x] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
       input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
@@ -59,7 +74,9 @@ Follow these rules exactly — they exist because agents already broke them once
       collapsing) found and fixed; TARDBP/FUS deliberately excluded from
       positive control, independently re-verified as correct. Unblocks
       H-003/H-004.
-- [ ] **exp001 adversarial review** - BLOCKED until exp001 completes. Reviewer must
+- [x] **exp001 adversarial review** - DONE 2026-08-25: KILLED (see reviews/exp001_review.md,
+      branch reviews/exp001). Positive-control gate fails exposure matching; top hits do not
+      replicate vs GSE255602. Retry requires H-001 deconvolution + null-calibrated ranking. Reviewer must
       check: multiple testing, batch effects (post-mortem tissue covariates!), 
       positive control outcome, replication vs GSE255602/GSE261875.
 
@@ -81,6 +98,8 @@ Follow these rules exactly — they exist because agents already broke them once
       colocalization (needed for the TARDBP/FUS-shaped half of the causal
       picture) still blocked on Project MinE DAC access -- application not yet
       submitted; see pipelines/causal_targets/COLOCALIZATION_PLAN.md.
+- [x] H-007 falsification tested on GSE303931 + GSE283507 (exp002_c9orf72_module): nucleolar/speckle criterion-1 bar failed twice -> VERDICT KILLED; KILL CONFIRMED by reviews/exp001_review sibling reviews/exp002_review.md.
+- [x] H-007b remediation + kill CONFIRMED by review-h007b-1 (reviews/h007b_review.md, branch reviews/h007b): count-level GSE283507 rerun fails pre-registered FC-A leg (a) (down_FDR10 x GO:0007010 fold 1.578 < 2.0, independently reproduced 1.535); FC-B rescue 0/2 -> reversal premise dead. NOTE: confirming commits 5d64b58/b218517 still unmerged to main - merge required. DRAFT-NOTE: optional H-007c synapse-primary (GO:0045202) hypothesis permitted ONLY as declared post-hoc discovery with sole out-of-sample gate at the unchanged 2.0-fold standard.
 
 ## Working-tree isolation (MANDATORY - incident 2026-08-25)
 Never share one checkout between agents. On task start run:

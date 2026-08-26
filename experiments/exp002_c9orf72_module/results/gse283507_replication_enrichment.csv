@@ -1,0 +1,17 @@
+module,gene_set,k_module,m_set,observed_overlap,expected_overlap,fold_enrichment,permutation_p
+FDR<0.10_all,nucleolar+ribo,3279,138,104,100.915,1.031,0.31098
+FDR<0.10_all,speckle+splicing,3279,89,78,65.083,1.198,0.0007
+FDR<0.10_all,DPR-curated,3279,5,4,3.656,1.094,0.59307
+FDR<0.10_all,cytoskel+ECM+synapse,3279,731,581,534.556,1.087,5e-05
+FDR<0.05_up,nucleolar+ribo,1617,138,54,49.765,1.085,0.24764
+FDR<0.05_up,speckle+splicing,1617,89,54,32.095,1.683,5e-05
+FDR<0.05_up,DPR-curated,1617,5,3,1.803,1.664,0.25464
+FDR<0.05_up,cytoskel+ECM+synapse,1617,731,171,263.61,0.649,1.0
+FDR<0.05_down,nucleolar+ribo,1328,138,34,40.871,0.832,0.91645
+FDR<0.05_down,speckle+splicing,1328,89,19,26.359,0.721,0.96915
+FDR<0.05_down,DPR-curated,1328,5,0,1.481,0.0,0.82646
+FDR<0.05_down,cytoskel+ECM+synapse,1328,731,360,216.496,1.663,5e-05
+top500|t|,nucleolar+ribo,1000,138,30,30.776,0.975,0.59657
+top500|t|,speckle+splicing,1000,89,18,19.848,0.907,0.72846
+top500|t|,DPR-curated,1000,5,0,1.115,0.0,0.71411
+top500|t|,cytoskel+ECM+synapse,1000,731,215,163.024,1.319,5e-05
