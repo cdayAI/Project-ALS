@@ -1,0 +1,779 @@
+{
+ "meta": {
+  "trait": "EFO_0000253 / 'amyotrophic lateral sclerosis'",
+  "fetched": "2026-08-25",
+  "n_studies": 28,
+  "n_genes": 56,
+  "endpoint": "GWAS Catalog REST findByDiseaseTrait + per-study associations (loci.authorReportedGenes)",
+  "caveat": "author-reported gene per locus; EFO-based query returned 0 - revisit with proper EFO projection"
+ },
+ "studies": [
+  {
+   "accession": "GCST000481",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000072",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000065",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000333",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000781",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000820",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000013",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000126",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000260",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST001460",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST001981",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000127",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST001664",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST000406",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST007144",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST007146",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST002509",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST003175",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST004692",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST008978",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST005647",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST010857",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST009529",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST90013429",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST90027163",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST90027164",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST90833053",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  },
+  {
+   "accession": "GCST90271545",
+   "title": "",
+   "pub_date": "",
+   "journal": ""
+  }
+ ],
+ "genes": {
+  "ACSL5": [
+   {
+    "rsid": "rs3736947",
+    "pval": 8e-11,
+    "study": "GCST010857"
+   }
+  ],
+  "ATXN1": [
+   {
+    "rsid": "rs697739",
+    "pval": 4e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "ATXN3": [
+   {
+    "rsid": "rs10143310",
+    "pval": 3e-07,
+    "study": "GCST005647"
+   }
+  ],
+  "B4GALT6": [
+   {
+    "rsid": "rs10438933",
+    "pval": 1e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "C21orf2": [
+   {
+    "rsid": "rs75087725",
+    "pval": 3e-10,
+    "study": "GCST004692"
+   },
+   {
+    "rsid": "rs75087725",
+    "pval": 2e-14,
+    "study": "GCST005647"
+   }
+  ],
+  "C9orf72": [
+   {
+    "rsid": "rs3849942",
+    "pval": 1e-08,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs2814707",
+    "pval": 7.000000000000001e-09,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs3849942",
+    "pval": 9e-11,
+    "study": "GCST000781"
+   },
+   {
+    "rsid": "rs3849942",
+    "pval": 4e-07,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs7019351",
+    "pval": 3.0000000000000002e-15,
+    "study": "GCST007146"
+   },
+   {
+    "rsid": "rs3849943",
+    "pval": 6e-10,
+    "study": "GCST002509"
+   },
+   {
+    "rsid": "rs3849943",
+    "pval": 4e-19,
+    "study": "GCST004692"
+   },
+   {
+    "rsid": "rs3849942",
+    "pval": 2e-06,
+    "study": "GCST008978"
+   },
+   {
+    "rsid": "rs3849943",
+    "pval": 4e-30,
+    "study": "GCST005647"
+   }
+  ],
+  "CABIN1": [
+   {
+    "rsid": "rs8141797",
+    "pval": 2e-09,
+    "study": "GCST001981"
+   }
+  ],
+  "CAMK1G": [
+   {
+    "rsid": "rs6703183",
+    "pval": 3.0000000000000004e-08,
+    "study": "GCST001981"
+   }
+  ],
+  "CENPV": [
+   {
+    "rsid": "rs7477",
+    "pval": 3e-07,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs7477",
+    "pval": 3e-07,
+    "study": "GCST002509"
+   }
+  ],
+  "CNTN4": [
+   {
+    "rsid": "rs2619566",
+    "pval": 7e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "CPNE4": [
+   {
+    "rsid": "rs1320900",
+    "pval": 7e-06,
+    "study": "GCST001664"
+   }
+  ],
+  "CSNK1G3": [
+   {
+    "rsid": "rs11241713",
+    "pval": 3e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "DISC1": [
+   {
+    "rsid": "rs16856202",
+    "pval": 8e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "DPP6": [
+   {
+    "rsid": "rs10260404",
+    "pval": 3e-06,
+    "study": "GCST000126"
+   },
+   {
+    "rsid": "rs10260404",
+    "pval": 3e-06,
+    "study": "GCST000260"
+   },
+   {
+    "rsid": "rs10260404",
+    "pval": 5e-08,
+    "study": "GCST000127"
+   }
+  ],
+  "EFEMP1": [
+   {
+    "rsid": "rs7577894",
+    "pval": 1e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "GGT5": [
+   {
+    "rsid": "rs8141797",
+    "pval": 2e-09,
+    "study": "GCST001981"
+   }
+  ],
+  "IFNK": [
+   {
+    "rsid": "rs3849942",
+    "pval": 1e-08,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs2814707",
+    "pval": 7.000000000000001e-09,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs3849942",
+    "pval": 9e-11,
+    "study": "GCST000781"
+   }
+  ],
+  "ITPR2": [
+   {
+    "rsid": "rs2306677",
+    "pval": 3e-06,
+    "study": "GCST000072"
+   }
+  ],
+  "KALRN": [
+   {
+    "rsid": "rs3772760",
+    "pval": 2e-06,
+    "study": "GCST003175"
+   }
+  ],
+  "KIAA0196": [
+   {
+    "rsid": "rs13268726",
+    "pval": 4.9999999999999996e-06,
+    "study": "GCST002509"
+   }
+  ],
+  "KIAA0513": [
+   {
+    "rsid": "rs8056742",
+    "pval": 5e-07,
+    "study": "GCST001664"
+   }
+  ],
+  "KIAA1727": [
+   {
+    "rsid": "rs11099864",
+    "pval": 9e-06,
+    "study": "GCST000013"
+   }
+  ],
+  "KIF5A": [
+   {
+    "rsid": "rs113247976",
+    "pval": 7e-13,
+    "study": "GCST005647"
+   }
+  ],
+  "KIFAP3": [
+   {
+    "rsid": "rs1541160",
+    "pval": 2e-08,
+    "study": "GCST000406"
+   }
+  ],
+  "LAMA3": [
+   {
+    "rsid": "rs11082762",
+    "pval": 7e-07,
+    "study": "GCST001664"
+   }
+  ],
+  "LIPC": [
+   {
+    "rsid": "rs3825776",
+    "pval": 9e-06,
+    "study": "GCST000127"
+   }
+  ],
+  "LOC100506746": [
+   {
+    "rsid": "rs3113494",
+    "pval": 9e-07,
+    "study": "GCST001460"
+   }
+  ],
+  "LOC101927815": [
+   {
+    "rsid": "rs17070492",
+    "pval": 1e-07,
+    "study": "GCST005647"
+   }
+  ],
+  "MOBKL2B": [
+   {
+    "rsid": "rs3849942",
+    "pval": 1e-08,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs2814707",
+    "pval": 7.000000000000001e-09,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs3849942",
+    "pval": 9e-11,
+    "study": "GCST000781"
+   }
+  ],
+  "MOBP": [
+   {
+    "rsid": "rs616147",
+    "pval": 4e-10,
+    "study": "GCST004692"
+   }
+  ],
+  "NSMCE2": [
+   {
+    "rsid": "rs13268726",
+    "pval": 4.9999999999999996e-06,
+    "study": "GCST002509"
+   }
+  ],
+  "NT5C1A": [
+   {
+    "rsid": "rs873917",
+    "pval": 8e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "OR52K1": [
+   {
+    "rsid": "rs2278170",
+    "pval": 7e-06,
+    "study": "GCST001460"
+   }
+  ],
+  "PIGL": [
+   {
+    "rsid": "rs7477",
+    "pval": 3e-07,
+    "study": "GCST001664"
+   }
+  ],
+  "PMP22": [
+   {
+    "rsid": "rs9901522",
+    "pval": 9e-08,
+    "study": "GCST005647"
+   }
+  ],
+  "RBMS1": [
+   {
+    "rsid": "rs10192369",
+    "pval": 9e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "SARM1": [
+   {
+    "rsid": "rs35714695",
+    "pval": 1e-08,
+    "study": "GCST004692"
+   }
+  ],
+  "SCFD1": [
+   {
+    "rsid": "rs10139154",
+    "pval": 3.0000000000000004e-08,
+    "study": "GCST004692"
+   },
+   {
+    "rsid": "rs10139154",
+    "pval": 1e-07,
+    "study": "GCST005647"
+   }
+  ],
+  "SCN7A": [
+   {
+    "rsid": "rs13015447",
+    "pval": 7e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "SELL": [
+   {
+    "rsid": "rs3177980",
+    "pval": 4e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "SEMA6A": [
+   {
+    "rsid": "rs7702057",
+    "pval": 8e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "SLC39A11": [
+   {
+    "rsid": "rs8066857",
+    "pval": 8e-06,
+    "study": "GCST000406"
+   }
+  ],
+  "SOD1": [
+   {
+    "rsid": "rs13048019",
+    "pval": 3.0000000000000004e-08,
+    "study": "GCST000781"
+   }
+  ],
+  "SQLE": [
+   {
+    "rsid": "rs13268726",
+    "pval": 4.9999999999999996e-06,
+    "study": "GCST002509"
+   }
+  ],
+  "STK36": [
+   {
+    "rsid": "rs2303565",
+    "pval": 6e-07,
+    "study": "GCST001664"
+   }
+  ],
+  "SUSD1": [
+   {
+    "rsid": "rs2782931",
+    "pval": 6e-06,
+    "study": "GCST000013"
+   }
+  ],
+  "SUSD2": [
+   {
+    "rsid": "rs8141797",
+    "pval": 2e-09,
+    "study": "GCST001981"
+   }
+  ],
+  "TBK1": [
+   {
+    "rsid": "rs74654358",
+    "pval": 7e-08,
+    "study": "GCST004692"
+   },
+   {
+    "rsid": "rs74654358",
+    "pval": 5e-09,
+    "study": "GCST005647"
+   }
+  ],
+  "TNIP1": [
+   {
+    "rsid": "rs10463311",
+    "pval": 4e-08,
+    "study": "GCST005647"
+   }
+  ],
+  "TTLL4": [
+   {
+    "rsid": "rs2303565",
+    "pval": 6e-07,
+    "study": "GCST001664"
+   }
+  ],
+  "TXNDC6": [
+   {
+    "rsid": "rs7638688",
+    "pval": 1e-06,
+    "study": "GCST002509"
+   }
+  ],
+  "UNC13A": [
+   {
+    "rsid": "rs12608932",
+    "pval": 3e-14,
+    "study": "GCST000481"
+   },
+   {
+    "rsid": "rs12608932",
+    "pval": 5e-08,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs12608932",
+    "pval": 2e-08,
+    "study": "GCST002509"
+   },
+   {
+    "rsid": "rs12608932",
+    "pval": 2e-08,
+    "study": "GCST004692"
+   },
+   {
+    "rsid": "rs12973192",
+    "pval": 4e-15,
+    "study": "GCST005647"
+   }
+  ],
+  "ZFP64": [
+   {
+    "rsid": "rs6013382",
+    "pval": 4.9999999999999996e-06,
+    "study": "GCST000013"
+   }
+  ],
+  "ZNF142": [
+   {
+    "rsid": "rs2303565",
+    "pval": 6e-07,
+    "study": "GCST001664"
+   }
+  ],
+  "ZNF746": [
+   {
+    "rsid": "rs855913",
+    "pval": 4e-08,
+    "study": "GCST000406"
+   }
+  ],
+  "intergenic": [
+   {
+    "rsid": "rs3849942",
+    "pval": 4.9999999999999995e-11,
+    "study": "GCST000820"
+   },
+   {
+    "rsid": "rs3849942",
+    "pval": 8e-10,
+    "study": "GCST000820"
+   },
+   {
+    "rsid": "rs16984239",
+    "pval": 2e-06,
+    "study": "GCST000013"
+   },
+   {
+    "rsid": "rs4363506",
+    "pval": 7e-07,
+    "study": "GCST000013"
+   },
+   {
+    "rsid": "rs12680546",
+    "pval": 3e-06,
+    "study": "GCST000013"
+   },
+   {
+    "rsid": "rs7580332",
+    "pval": 9e-06,
+    "study": "GCST000127"
+   },
+   {
+    "rsid": "rs7607369",
+    "pval": 7e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs7665939",
+    "pval": 9e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs6918777",
+    "pval": 7e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs4917300",
+    "pval": 2e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs4529888",
+    "pval": 4.9999999999999996e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs9533799",
+    "pval": 4e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs1971791",
+    "pval": 1e-06,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs2006933",
+    "pval": 9e-07,
+    "study": "GCST001664"
+   },
+   {
+    "rsid": "rs10233425",
+    "pval": 8e-06,
+    "study": "GCST002509"
+   },
+   {
+    "rsid": "rs2185341",
+    "pval": 2e-06,
+    "study": "GCST003175"
+   },
+   {
+    "rsid": "rs4879628",
+    "pval": 1e-06,
+    "study": "GCST003175"
+   },
+   {
+    "rsid": "rs11224052",
+    "pval": 9e-07,
+    "study": "GCST003175"
+   },
+   {
+    "rsid": "rs2785946",
+    "pval": 8e-07,
+    "study": "GCST003175"
+   },
+   {
+    "rsid": "rs9953769",
+    "pval": 9e-06,
+    "study": "GCST003175"
+   }
+  ]
+ }
+}
