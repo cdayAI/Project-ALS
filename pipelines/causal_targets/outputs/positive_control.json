@@ -1,0 +1,16 @@
+{
+  "expected": [
+    "C9ORF72",
+    "SOD1",
+    "TBK1",
+    "UNC13A"
+  ],
+  "found": [
+    "C9ORF72",
+    "SOD1",
+    "TBK1",
+    "UNC13A"
+  ],
+  "missing": [],
+  "passed": true
+}

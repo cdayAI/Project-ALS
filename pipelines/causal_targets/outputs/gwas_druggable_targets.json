@@ -1,0 +1,1657 @@
+[
+  {
+    "gene": "C9orf72",
+    "ensembl_id": "ENSG00000147894",
+    "n_gwas_associations": 9,
+    "min_pvalue": 4e-30,
+    "pmids": [
+      "19734901",
+      "20801718",
+      "22959728",
+      "24931836",
+      "25442119",
+      "27455348",
+      "29566793",
+      "30976013"
+    ],
+    "gwas_accessions": [
+      "GCST000481",
+      "GCST000781",
+      "GCST001664",
+      "GCST002509",
+      "GCST004692",
+      "GCST005647",
+      "GCST007146",
+      "GCST008978"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "AB:UniProt loc high conf",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "UNC13A",
+    "ensembl_id": "ENSG00000130477",
+    "n_gwas_associations": 6,
+    "min_pvalue": 4e-15,
+    "pmids": [
+      "19734901",
+      "22959728",
+      "24931836",
+      "27455348",
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST000481",
+      "GCST001664",
+      "GCST002509",
+      "GCST004692",
+      "GCST004792",
+      "GCST005647"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "NR",
+    "ensembl_id": "ENSG00000213281",
+    "n_gwas_associations": 16,
+    "min_pvalue": 2e-14,
+    "pmids": [
+      "19451621",
+      "19734901",
+      "20801717",
+      "31872054"
+    ],
+    "gwas_accessions": [
+      "GCST000406",
+      "GCST000481",
+      "GCST000820",
+      "GCST009529"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Advanced Clinical",
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "C21orf2",
+    "ensembl_id": "ENSG00000160226",
+    "n_gwas_associations": 2,
+    "min_pvalue": 2e-14,
+    "pmids": [
+      "27455348",
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST004692",
+      "GCST005647"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "KIF5A",
+    "ensembl_id": "ENSG00000155980",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-13,
+    "pmids": [
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST005647"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "AB:Human Protein Atlas loc",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "intergenic",
+    "ensembl_id": "ENSG00000266835",
+    "n_gwas_associations": 24,
+    "min_pvalue": 4.9999999999999995e-11,
+    "pmids": [
+      "17362836",
+      "18084291",
+      "20801717",
+      "22959728",
+      "24931836",
+      "26580837"
+    ],
+    "gwas_accessions": [
+      "GCST000013",
+      "GCST000127",
+      "GCST000820",
+      "GCST001663",
+      "GCST001664",
+      "GCST002509",
+      "GCST003175",
+      "GCST004792"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": []
+  },
+  {
+    "gene": "ACSL5",
+    "ensembl_id": "ENSG00000197142",
+    "n_gwas_associations": 1,
+    "min_pvalue": 8e-11,
+    "pmids": [
+      "32968195"
+    ],
+    "gwas_accessions": [
+      "GCST010857"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Ligand",
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "IFNK",
+    "ensembl_id": "ENSG00000147896",
+    "n_gwas_associations": 3,
+    "min_pvalue": 9e-11,
+    "pmids": [
+      "19734901",
+      "20801718"
+    ],
+    "gwas_accessions": [
+      "GCST000481",
+      "GCST000781"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf"
+    ]
+  },
+  {
+    "gene": "MOBKL2B",
+    "ensembl_id": "ENSG00000120162",
+    "n_gwas_associations": 3,
+    "min_pvalue": 9e-11,
+    "pmids": [
+      "19734901",
+      "20801718"
+    ],
+    "gwas_accessions": [
+      "GCST000481",
+      "GCST000781"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "MOBP",
+    "ensembl_id": "ENSG00000168314",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4e-10,
+    "pmids": [
+      "27455348"
+    ],
+    "gwas_accessions": [
+      "GCST004692"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": []
+  },
+  {
+    "gene": "SUSD2",
+    "ensembl_id": "ENSG00000099994",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-09,
+    "pmids": [
+      "23624525"
+    ],
+    "gwas_accessions": [
+      "GCST001981"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:Human Protein Atlas loc"
+    ]
+  },
+  {
+    "gene": "CABIN1",
+    "ensembl_id": "ENSG00000099991",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-09,
+    "pmids": [
+      "23624525"
+    ],
+    "gwas_accessions": [
+      "GCST001981"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "GGT5",
+    "ensembl_id": "ENSG00000099998",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-09,
+    "pmids": [
+      "23624525"
+    ],
+    "gwas_accessions": [
+      "GCST001981"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM"
+    ]
+  },
+  {
+    "gene": "TBK1",
+    "ensembl_id": "ENSG00000183735",
+    "n_gwas_associations": 2,
+    "min_pvalue": 5e-09,
+    "pmids": [
+      "27455348",
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST004692",
+      "GCST005647"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "PR:Literature",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "SARM1",
+    "ensembl_id": "ENSG00000004139",
+    "n_gwas_associations": 1,
+    "min_pvalue": 1e-08,
+    "pmids": [
+      "27455348"
+    ],
+    "gwas_accessions": [
+      "GCST004692"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "KIFAP3",
+    "ensembl_id": "ENSG00000075945",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-08,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "CAMK1G",
+    "ensembl_id": "ENSG00000008118",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3.0000000000000004e-08,
+    "pmids": [
+      "23624525"
+    ],
+    "gwas_accessions": [
+      "GCST001981"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:UniProt loc med conf",
+      "AB:GO CC med conf",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "SOD1",
+    "ensembl_id": "ENSG00000142168",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3.0000000000000004e-08,
+    "pmids": [
+      "20801718"
+    ],
+    "gwas_accessions": [
+      "GCST000781"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Pocket",
+      "AB:GO CC high conf",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "SCFD1",
+    "ensembl_id": "ENSG00000092108",
+    "n_gwas_associations": 2,
+    "min_pvalue": 3.0000000000000004e-08,
+    "pmids": [
+      "27455348",
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST004692",
+      "GCST005647"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "ZNF746",
+    "ensembl_id": "ENSG00000181220",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4e-08,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "TNIP1",
+    "ensembl_id": "ENSG00000145901",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4e-08,
+    "pmids": [
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST005647"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "DPP6",
+    "ensembl_id": "ENSG00000130226",
+    "n_gwas_associations": 3,
+    "min_pvalue": 5e-08,
+    "pmids": [
+      "18057069",
+      "18084291",
+      "18987618"
+    ],
+    "gwas_accessions": [
+      "GCST000126",
+      "GCST000127",
+      "GCST000260"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Pocket",
+      "SM:Druggable Family",
+      "AB:UniProt loc high conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "ST3GAL3",
+    "ensembl_id": "ENSG00000126091",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-08,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "PMP22",
+    "ensembl_id": "ENSG00000109099",
+    "n_gwas_associations": 1,
+    "min_pvalue": 9e-08,
+    "pmids": [
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST005647"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Druggable Family",
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:UniProt Ubiquitination",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "SQLE",
+    "ensembl_id": "ENSG00000104549",
+    "n_gwas_associations": 2,
+    "min_pvalue": 1e-07,
+    "pmids": [
+      "24931836"
+    ],
+    "gwas_accessions": [
+      "GCST002509",
+      "GCST002510"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:Druggable Family",
+      "AB:UniProt loc high conf",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "NSMCE2",
+    "ensembl_id": "ENSG00000156831",
+    "n_gwas_associations": 2,
+    "min_pvalue": 1e-07,
+    "pmids": [
+      "24931836"
+    ],
+    "gwas_accessions": [
+      "GCST002509",
+      "GCST002510"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "KIAA0196",
+    "ensembl_id": "ENSG00000164961",
+    "n_gwas_associations": 2,
+    "min_pvalue": 1e-07,
+    "pmids": [
+      "24931836"
+    ],
+    "gwas_accessions": [
+      "GCST002509",
+      "GCST002510"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "LOC101927815",
+    "ensembl_id": null,
+    "n_gwas_associations": 1,
+    "min_pvalue": 1e-07,
+    "pmids": [
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST005647"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": []
+  },
+  {
+    "gene": "LRRC3",
+    "ensembl_id": "ENSG00000160233",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004793"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "C21orf29",
+    "ensembl_id": "ENSG00000175894",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004793"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf"
+    ]
+  },
+  {
+    "gene": "PIGL",
+    "ensembl_id": "ENSG00000108474",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt SigP or TMHMM"
+    ]
+  },
+  {
+    "gene": "CENPV",
+    "ensembl_id": "ENSG00000166582",
+    "n_gwas_associations": 2,
+    "min_pvalue": 3e-07,
+    "pmids": [
+      "22959728",
+      "24931836"
+    ],
+    "gwas_accessions": [
+      "GCST001664",
+      "GCST002509"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "ATXN3",
+    "ensembl_id": "ENSG00000066427",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-07,
+    "pmids": [
+      "29566793"
+    ],
+    "gwas_accessions": [
+      "GCST005647"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Pocket",
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:Human Protein Atlas loc",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "CPNE4",
+    "ensembl_id": "ENSG00000196353",
+    "n_gwas_associations": 3,
+    "min_pvalue": 4e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664",
+      "GCST004792"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC med conf",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "NPEPPS",
+    "ensembl_id": "ENSG00000141279",
+    "n_gwas_associations": 1,
+    "min_pvalue": 5e-07,
+    "pmids": [
+      "24234648"
+    ],
+    "gwas_accessions": [
+      "GCST002274"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Advanced Clinical",
+      "SM:High-Quality Ligand",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "KIAA0513",
+    "ensembl_id": "ENSG00000135709",
+    "n_gwas_associations": 1,
+    "min_pvalue": 5e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "ARAP2",
+    "ensembl_id": "ENSG00000047365",
+    "n_gwas_associations": 1,
+    "min_pvalue": 5e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "STK36",
+    "ensembl_id": "ENSG00000163482",
+    "n_gwas_associations": 1,
+    "min_pvalue": 6e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "TTLL4",
+    "ensembl_id": "ENSG00000135912",
+    "n_gwas_associations": 1,
+    "min_pvalue": 6e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "ZNF142",
+    "ensembl_id": "ENSG00000115568",
+    "n_gwas_associations": 1,
+    "min_pvalue": 6e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "LAMA3",
+    "ensembl_id": "ENSG00000053747",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-07,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001664"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination",
+      "OC:Approved Drug"
+    ]
+  },
+  {
+    "gene": "LOC100506746",
+    "ensembl_id": null,
+    "n_gwas_associations": 1,
+    "min_pvalue": 9e-07,
+    "pmids": [
+      "22470424"
+    ],
+    "gwas_accessions": [
+      "GCST001460"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": []
+  },
+  {
+    "gene": "ARHGEF2",
+    "ensembl_id": "ENSG00000116584",
+    "n_gwas_associations": 1,
+    "min_pvalue": 1e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "EFEMP1",
+    "ensembl_id": "ENSG00000115380",
+    "n_gwas_associations": 1,
+    "min_pvalue": 1e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "B4GALT6",
+    "ensembl_id": "ENSG00000118276",
+    "n_gwas_associations": 1,
+    "min_pvalue": 1e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt SigP or TMHMM"
+    ]
+  },
+  {
+    "gene": "TXNDC6",
+    "ensembl_id": "ENSG00000181322",
+    "n_gwas_associations": 1,
+    "min_pvalue": 1e-06,
+    "pmids": [
+      "24931836"
+    ],
+    "gwas_accessions": [
+      "GCST002509"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand"
+    ]
+  },
+  {
+    "gene": "IFRD1",
+    "ensembl_id": "ENSG00000006652",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:Human Protein Atlas loc",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "KALRN",
+    "ensembl_id": "ENSG00000160145",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "26580837"
+    ],
+    "gwas_accessions": [
+      "GCST003175"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:Druggable Family",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "BOD1L",
+    "ensembl_id": "ENSG00000038219",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004793"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "CREB5",
+    "ensembl_id": "ENSG00000146592",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004793"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:Human Protein Atlas loc",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "SEC16B",
+    "ensembl_id": "ENSG00000120341",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004791"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:Human Protein Atlas loc",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "EGR1",
+    "ensembl_id": "ENSG00000120738",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004791"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination",
+      "OC:Advanced Clinical"
+    ]
+  },
+  {
+    "gene": "REEP2",
+    "ensembl_id": "ENSG00000132563",
+    "n_gwas_associations": 1,
+    "min_pvalue": 2e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004791"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "ITPR2",
+    "ensembl_id": "ENSG00000123104",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-06,
+    "pmids": [
+      "17827064"
+    ],
+    "gwas_accessions": [
+      "GCST000072"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "CSNK1G3",
+    "ensembl_id": "ENSG00000151292",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:High-Quality Pocket",
+      "SM:Druggable Family",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "TBC1D1",
+    "ensembl_id": "ENSG00000065882",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004793"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "DYRK2",
+    "ensembl_id": "ENSG00000127334",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004791"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:Med-Quality Pocket",
+      "SM:Druggable Family",
+      "PR:UniProt Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "CAND1",
+    "ensembl_id": "ENSG00000111530",
+    "n_gwas_associations": 1,
+    "min_pvalue": 3e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004791"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "ATXN1",
+    "ensembl_id": "ENSG00000124788",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:High-Quality Pocket",
+      "PR:UniProt Ubiquitination"
+    ]
+  },
+  {
+    "gene": "SELL",
+    "ensembl_id": "ENSG00000188404",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Advanced Clinical",
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:Advanced Clinical",
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "ZFP64",
+    "ensembl_id": "ENSG00000020256",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4.9999999999999996e-06,
+    "pmids": [
+      "17362836"
+    ],
+    "gwas_accessions": [
+      "GCST000013"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:UniProt Ubiquitination"
+    ]
+  },
+  {
+    "gene": "PTPRF",
+    "ensembl_id": "ENSG00000142949",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4.9999999999999996e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "JMJD2A",
+    "ensembl_id": "ENSG00000066135",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4.9999999999999996e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:High-Quality Pocket",
+      "SM:Druggable Family",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "CNOT2",
+    "ensembl_id": "ENSG00000111596",
+    "n_gwas_associations": 1,
+    "min_pvalue": 4.9999999999999996e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "SUSD1",
+    "ensembl_id": "ENSG00000106868",
+    "n_gwas_associations": 1,
+    "min_pvalue": 6e-06,
+    "pmids": [
+      "17362836"
+    ],
+    "gwas_accessions": [
+      "GCST000013"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "NRXN3",
+    "ensembl_id": "ENSG00000021645",
+    "n_gwas_associations": 1,
+    "min_pvalue": 6e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "OR52K1",
+    "ensembl_id": "ENSG00000196778",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-06,
+    "pmids": [
+      "22470424"
+    ],
+    "gwas_accessions": [
+      "GCST001460"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf"
+    ]
+  },
+  {
+    "gene": "PCSK5",
+    "ensembl_id": "ENSG00000099139",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Ligand",
+      "AB:GO CC high conf",
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Database Ubiquitination",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "CNTN4",
+    "ensembl_id": "ENSG00000144619",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "SCN7A",
+    "ensembl_id": "ENSG00000136546",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:Approved Drug",
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:UniProt loc high conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "AB:Human Protein Atlas loc",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "HDAC4",
+    "ensembl_id": "ENSG00000068024",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004792"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Approved Drug",
+      "SM:Structure with Ligand",
+      "SM:High-Quality Ligand",
+      "SM:Med-Quality Pocket",
+      "SM:Druggable Family",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder",
+      "OC:Approved Drug"
+    ]
+  },
+  {
+    "gene": "ASB1",
+    "ensembl_id": "ENSG00000065802",
+    "n_gwas_associations": 1,
+    "min_pvalue": 7e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004792"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "ANKS1B",
+    "ensembl_id": "ENSG00000185046",
+    "n_gwas_associations": 1,
+    "min_pvalue": 8e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST001663"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:GO CC high conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "NT5C1A",
+    "ensembl_id": "ENSG00000116981",
+    "n_gwas_associations": 1,
+    "min_pvalue": 8e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": []
+  },
+  {
+    "gene": "DISC1",
+    "ensembl_id": "ENSG00000162946",
+    "n_gwas_associations": 1,
+    "min_pvalue": 8e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "SM:Structure with Ligand",
+      "PR:UniProt Ubiquitination",
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "SLC39A11",
+    "ensembl_id": "ENSG00000133195",
+    "n_gwas_associations": 1,
+    "min_pvalue": 8e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc med conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "SEMA6A",
+    "ensembl_id": "ENSG00000092421",
+    "n_gwas_associations": 1,
+    "min_pvalue": 8e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "AB:UniProt loc high conf",
+      "AB:UniProt SigP or TMHMM",
+      "AB:GO CC med conf",
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  },
+  {
+    "gene": "KIAA1727",
+    "ensembl_id": "ENSG00000137460",
+    "n_gwas_associations": 1,
+    "min_pvalue": 9e-06,
+    "pmids": [
+      "17362836"
+    ],
+    "gwas_accessions": [
+      "GCST000013"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "LIPC",
+    "ensembl_id": "ENSG00000166035",
+    "n_gwas_associations": 1,
+    "min_pvalue": 9e-06,
+    "pmids": [
+      "18084291"
+    ],
+    "gwas_accessions": [
+      "GCST000127"
+    ],
+    "tractable_small_molecule": true,
+    "tractable_antibody": true,
+    "tractability_buckets": [
+      "SM:High-Quality Ligand",
+      "SM:Druggable Family",
+      "AB:UniProt loc high conf",
+      "AB:GO CC high conf",
+      "AB:UniProt SigP or TMHMM",
+      "PR:Half-life Data",
+      "PR:Small Molecule Binder"
+    ]
+  },
+  {
+    "gene": "RBMS1",
+    "ensembl_id": "ENSG00000153250",
+    "n_gwas_associations": 1,
+    "min_pvalue": 9e-06,
+    "pmids": [
+      "19451621"
+    ],
+    "gwas_accessions": [
+      "GCST000406"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination"
+    ]
+  },
+  {
+    "gene": "PPP2R2D",
+    "ensembl_id": "ENSG00000175470",
+    "n_gwas_associations": 1,
+    "min_pvalue": 9e-06,
+    "pmids": [
+      "22959728"
+    ],
+    "gwas_accessions": [
+      "GCST004792"
+    ],
+    "tractable_small_molecule": false,
+    "tractable_antibody": false,
+    "tractability_buckets": [
+      "PR:Database Ubiquitination",
+      "PR:Half-life Data"
+    ]
+  }
+]
