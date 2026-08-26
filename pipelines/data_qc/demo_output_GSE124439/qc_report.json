@@ -1,0 +1,170 @@
+{
+ "meta": {
+  "input": "/Users/christopherday/Project-ALS/data/gse124439",
+  "n_features": 28953,
+  "n_samples": 176,
+  "generated": "2026-08-25 21:29:39"
+ },
+ "classes": [
+  {
+   "class": "gene",
+   "n_features": 26994,
+   "frac_features": 0.93234,
+   "frac_raw_reads": 0.74288,
+   "per_sample_read_frac_min": 0.00177,
+   "per_sample_read_frac_median": 0.00403,
+   "per_sample_read_frac_max": 0.00885,
+   "top_features_by_reads": [
+    {
+     "feature": "MALAT1",
+     "reads": 56902492
+    },
+    {
+     "feature": "MBP",
+     "reads": 19928811
+    },
+    {
+     "feature": "MAP1B",
+     "reads": 18842887
+    },
+    {
+     "feature": "SLC1A2",
+     "reads": 18162451
+    },
+    {
+     "feature": "GFAP",
+     "reads": 14950024
+    },
+    {
+     "feature": "RPPH1",
+     "reads": 10642146
+    },
+    {
+     "feature": "CALM1",
+     "reads": 9645996
+    },
+    {
+     "feature": "PLP1",
+     "reads": 9214160
+    },
+    {
+     "feature": "MAP2",
+     "reads": 9053033
+    },
+    {
+     "feature": "MAP1A",
+     "reads": 8722839
+    }
+   ]
+  },
+  {
+   "class": "other_non_gene",
+   "n_features": 967,
+   "frac_features": 0.0334,
+   "frac_raw_reads": 0.00199,
+   "per_sample_read_frac_min": 1e-05,
+   "per_sample_read_frac_median": 1e-05,
+   "per_sample_read_frac_max": 3e-05,
+   "top_features_by_reads": [
+    {
+     "feature": "LOC100996724",
+     "reads": 916453
+    },
+    {
+     "feature": "MIR3687-2",
+     "reads": 861526
+    },
+    {
+     "feature": "LOC728392",
+     "reads": 483974
+    },
+    {
+     "feature": "LOC100506548",
+     "reads": 293870
+    },
+    {
+     "feature": "MIR3687-1",
+     "reads": 279384
+    },
+    {
+     "feature": "MIR6087",
+     "reads": 198179
+    },
+    {
+     "feature": "LOC642852",
+     "reads": 172367
+    },
+    {
+     "feature": "LOC100419583",
+     "reads": 157163
+    },
+    {
+     "feature": "LOC646762",
+     "reads": 131744
+    },
+    {
+     "feature": "LOC220729",
+     "reads": 110843
+    }
+   ]
+  },
+  {
+   "class": "transposable_element_repeat",
+   "n_features": 992,
+   "frac_features": 0.03426,
+   "frac_raw_reads": 0.25513,
+   "per_sample_read_frac_min": 0.00057,
+   "per_sample_read_frac_median": 0.00143,
+   "per_sample_read_frac_max": 0.00346,
+   "top_features_by_reads": [
+    {
+     "feature": "MIRb:MIR:SINE",
+     "reads": 64491011
+    },
+    {
+     "feature": "L2a:L2:LINE",
+     "reads": 49891830
+    },
+    {
+     "feature": "MIR:MIR:SINE",
+     "reads": 48567195
+    },
+    {
+     "feature": "L2c:L2:LINE",
+     "reads": 42458567
+    },
+    {
+     "feature": "AluJb:Alu:SINE",
+     "reads": 29096772
+    },
+    {
+     "feature": "MIRc:MIR:SINE",
+     "reads": 28496992
+    },
+    {
+     "feature": "L2b:L2:LINE",
+     "reads": 25401875
+    },
+    {
+     "feature": "MIR3:MIR:SINE",
+     "reads": 23956408
+    },
+    {
+     "feature": "AluSx:Alu:SINE",
+     "reads": 23052178
+    },
+    {
+     "feature": "7SK:RNA:RNA",
+     "reads": 21172145
+    }
+   ]
+  }
+ ],
+ "verdict": {
+  "verdict": "NO-GO",
+  "exit_code": 2,
+  "non_gene_read_fraction": 0.25712,
+  "whitelist_used": true,
+  "recommendation": "Non-gene features carry 25.7% of raw reads. Strip them BEFORE CPM/TPM/size-factor normalization; any analysis normalized on the raw matrix is globally diluted and should be re-run."
+ }
+}

@@ -20,6 +20,14 @@ Follow these rules exactly — they exist because agents already broke them once
 6. **Cite or it didn't happen**: research claims need PMIDs/URLs; code needs the
    dataset IDs and parameter values that reproduce it.
 
+- [~] **Data QC pipeline** `pipeline/data-qc` `pipelines/data_qc/`
+      te_contamination_check.py - reusable pre-flight QC detecting non-gene
+      feature classes (TE/repeat rows etc.) vs a gene-reference whitelist,
+      quantifying their library-size share, emitting GO/CAUTION/NO-GO.
+      Worked example: GSE124439 (TE rows = 25.5% of raw reads -> NO-GO).
+      CLAIMED BY: sprint1-repurposing agent. To become mandatory pre-flight
+      step for all count-matrix experiments.
+
 ## Context to read first (in order)
 1. `README.md` - mission and layout
 2. `docs_plan.md` - factory design
