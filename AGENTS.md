@@ -42,6 +42,7 @@ Follow these rules exactly — they exist because agents already broke them once
       CLAIMED BY: c9orf72-factory (Prime Agent fleet)
 - [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
       Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
+      STATUS: DONE pending review. target_shortlist.md (12 AF-verified folded domains), SETUP.md, Boltz-2 venv installed; weights cached ~6.2 GB (<10 GB cap); TBK1-KD + 4IM0-ligand smoke test PASSED (CPU 58 min, iptm 0.96, ligand rediscovers hinge/ATP pocket). DiffDock deferred (>10 GB cumulative, CPU-only). 
       CLAIMED BY: structure-factory (Prime Agent fleet)
 - [x] **Stream C: trial matcher** `tools/trial_matcher/` - ClinicalTrials.gov API v2 wrapper:
       input = country/region, mutation status, disease stage; output = ranked recruiting ALS trials.
