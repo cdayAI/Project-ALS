@@ -49,9 +49,10 @@ Follow these rules exactly — they exist because agents already broke them once
       CLAIMED BY: claude (pipeline/trial-matcher branch) - DONE, independently reviewed
       (reviews/trial_matcher.md). Real matching bugs found in both self-testing and
       independent review; see README's Known limitations before extending this.
-- [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
+- [~] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
       fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
-      plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
+      plan for Project MinE summary stats (application pending).
+      CLAIMED BY: claude (pipeline/causal-targets branch) - IN PROGRESS
 - [ ] **exp001 adversarial review** - BLOCKED until exp001 completes. Reviewer must
       check: multiple testing, batch effects (post-mortem tissue covariates!), 
       positive control outcome, replication vs GSE255602/GSE261875.
