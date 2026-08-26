@@ -49,10 +49,11 @@ Follow these rules exactly — they exist because agents already broke them once
       Nucleolar-stress/speckle module falsified on 2-dataset test; VERDICT KILLED
       (exp002_c9orf72_module); replacement drafted (hypotheses/H-007b.md).
       DONE BY: c9orf72-factory (merged 4b63a9a)
-- [~] **Perturbation signature reversal pipeline (H-007b)** `pipelines/perturbation_signatures/`
-      + exp003_h007b_reversal. LINCS Level5 streaming reversal scoring of the
-      cytoskeletal/ECM/synaptic iPSC module; GCTX stack read-only.
-      CLAIMED BY: c9orf72-factory (authorized by parent, agentmsg_a6ef7572)
+- [x] **Perturbation signature reversal pipeline (H-007b)** `pipelines/perturbation_signatures/`
+      + exp003_h007b_reversal. CLOSED KILLED-SUPERSEDED: reversal target module failed
+      count-level replication; scoring never run (paused at gate failure). Vendored
+      lincs_score.py preserved for future hypotheses that survive module validation.
+      DONE BY: c9orf72-factory (claim released)
 - [~] **Structure readiness (Stream D prep)** `pipelines/structure_readiness/`
       Folded-target shortlist + Boltz-2/DiffDock tooling. IDPs out of scope.
       STATUS: DONE pending review. target_shortlist.md (12 AF-verified folded domains), SETUP.md, Boltz-2 venv installed; weights cached ~6.2 GB (<10 GB cap); TBK1-KD + 4IM0-ligand smoke test PASSED (CPU 58 min, iptm 0.96, ligand rediscovers hinge/ATP pocket). DiffDock deferred (>10 GB cumulative, CPU-only). 
