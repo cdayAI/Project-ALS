@@ -76,3 +76,7 @@ Module-level MDE (mean log2FC of an m-gene set, median gene SD, design effect
 1+(m-1)*rho): for m>=100 genes, detectable mean shift ~0.07-0.20 at n=10-25/group for
 rho in [0.1, 0.3]. Continuous-predictor designs: detectable standardized beta ~0.66 /
 0.53 / 0.45 at n=20/30/41.
+- L11 (2026-08-26, exp001b): Pipelines MUST abort on degenerate score distributions (single unique value across all outputs). A crashed run fed into a pre-committed decision rule produces a confident verdict about nothing.
+- L12 (2026-08-26, exp001b): Check gene-ID spaces (HGNC vs Entrez vs Ensembl) BEFORE any cross-referencing step; '0/N mapped' must abort the run, not produce zeros.
+- L13 (2026-08-26, review-exp001b-1): Reviewers commit incrementally and orchestrators verify ARTIFACTS (branch/file existence), not replies. Silent reviewer death is a real failure mode.
+- L14 (2026-08-26, exp001b arc): STRATEGIC - bulk post-mortem ALS signatures carry ~8.8% cell-type-resolved variance (measured). All future reversal/query work requires CELL-TYPE-PURE sources (iPSC MN, scRNA perturbation). Deconvolution of bulk tissue cannot rescue this.
