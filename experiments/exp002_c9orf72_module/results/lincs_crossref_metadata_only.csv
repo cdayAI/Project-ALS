@@ -1,0 +1,5 @@
+module,n_module_genes,n_in_lincs_measured,n_in_lincs_landmark978
+module_fdr10_all,69,34,2
+module_fdr05_up,25,11,1
+module_fdr05_down,5,3,0
+module_top500_absT,1000,590,60

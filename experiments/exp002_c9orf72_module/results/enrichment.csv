@@ -1,0 +1,13 @@
+module,gene_set,k_module,m_set,observed_overlap,expected_overlap,fold_enrichment,permutation_p
+module_fdr10_all,nucleolar+ribo_biogenesis,69,754,0,3.201,0.0,0.9618
+module_fdr10_all,speckle+splicing,69,516,2,2.191,0.913,0.64432
+module_fdr10_all,DPR_curated_literature,69,30,0,0.127,0.0,0.11994
+module_fdr05_up,nucleolar+ribo_biogenesis,25,754,0,1.16,0.0,0.69632
+module_fdr05_up,speckle+splicing,25,516,0,0.794,0.0,0.55322
+module_fdr05_up,DPR_curated_literature,25,30,0,0.046,0.0,0.0473
+module_fdr05_down,nucleolar+ribo_biogenesis,5,754,0,0.232,0.0,0.21209
+module_fdr05_down,speckle+splicing,5,516,0,0.159,0.0,0.15119
+module_fdr05_down,DPR_curated_literature,5,30,0,0.009,0.0,0.00995
+module_top500_absT,nucleolar+ribo_biogenesis,1000,754,32,46.391,0.69,0.9921
+module_top500_absT,speckle+splicing,1000,516,16,31.748,0.504,0.9993
+module_top500_absT,DPR_curated_literature,1000,30,4,1.846,2.167,0.10954
