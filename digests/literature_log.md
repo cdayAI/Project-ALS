@@ -12,3 +12,5 @@
 - 2026-08-26 | 41831326 | 1 | NfL testing clinical implementation (multidisciplinary) -> context for H-008/H-012 biomarker strategy
 - 2026-08-26 | 42162905 | 1 | CSF exosomal miRNA biomarkers neurodegeneration -> watchlist only
 - 2026-08-26 | 42636000 | 1 | TDP-43 disease conceptualization/staging review -> background
+- 2026-08-26 | 42640367 | 1 | Review: nucleolus roles in neurodegeneration -> context only; does NOT reopen H-007 (killed on measured depletion in isogenic iPSC data, not narrative absence)
+- 2026-08-26 | 42592497 | 0 | Valproic-acid photorelease probe chemistry -> out of scope
