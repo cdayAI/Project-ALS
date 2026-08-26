@@ -22,3 +22,4 @@
 [heartbeat 2026-08-26 07:05 EDT] streama-coloc active (context-loading phase - reading research briefs in its worktree). Hygiene clean. No other activity.
 [heartbeat 2026-08-26 07:45 EDT] streama-coloc running but no writes in 90min (likely reading large sumstats or stalled). One more tolerant cycle, then checkpoint-demand message per new discipline. Hygiene clean.
 [heartbeat 2026-08-26 08:25 EDT] streama-coloc UN-STUCK: exp005_coloc/ scaffold created with PRE_REGISTRATION.md + config.yaml + extract_loci.py (criteria-first order being followed). Silent period was presumably sumstats parsing. No intervention needed. Hygiene clean.
+[heartbeat 2026-08-26 08:50 EDT] streama-coloc actively writing (extract_loci.py + config.yaml updated <30min). Pre-registration in place. Hygiene clean. Nothing to intervene.
