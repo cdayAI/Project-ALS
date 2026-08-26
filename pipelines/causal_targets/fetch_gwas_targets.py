@@ -108,9 +108,24 @@ def fetch_als_associations():
     return associations
 
 
+# GWAS Catalog placeholder tokens for "no specific gene reported" -- NOT
+# real gene symbols. An earlier version let these fall through to Open
+# Targets' fuzzy gene-name search, which resolved "NR" to the real oncogene
+# NRAS and "intergenic" to a random lncRNA (GAPLINC), attaching those genes'
+# real tractability data to a fabricated identity -- for "NR" specifically,
+# a 16-association, p=2e-14 row (ranked #3 by significance) with
+# tractable_small_molecule=True that was entirely NRAS's data, not evidence
+# about any ALS-relevant target. Found and fixed after independent review
+# (reviews/causal_targets.md). Filtered out here, before Ensembl resolution
+# is ever attempted, rather than filtered from the output afterward, so no
+# downstream code path can accidentally look up tractability for one.
+NON_GENE_TOKENS = {"nr", "intergenic", "none", "n/a", "na", "-"}
+
+
 def genes_from_associations(associations):
     """Collapse per-association loci into unique gene-level evidence."""
     genes = {}
+    skipped_placeholder = 0
     for assoc in associations:
         pmid = (assoc.get("study") or {}).get("publicationInfo", {}).get("pubmedId")
         accession = (assoc.get("study") or {}).get("accessionId")
@@ -119,6 +134,9 @@ def genes_from_associations(associations):
             for g in locus.get("authorReportedGenes") or []:
                 name = (g.get("geneName") or "").strip()
                 if not name:
+                    continue
+                if name.lower() in NON_GENE_TOKENS:
+                    skipped_placeholder += 1
                     continue
                 ensembl_ids = [e.get("ensemblGeneId") for e in g.get("ensemblGeneIds") or [] if e.get("ensemblGeneId")]
                 entry = genes.setdefault(name, {
@@ -137,6 +155,8 @@ def genes_from_associations(associations):
                     entry["pmids"].add(str(pmid))
                 if accession:
                     entry["gwas_accessions"].add(accession)
+    if skipped_placeholder:
+        log(f"skipped {skipped_placeholder} locus mentions with no real gene reported (NR/intergenic/etc.) -- not resolved against Open Targets, not in output")
     return genes
 
 
@@ -178,19 +198,38 @@ def resolve_ensembl_id(gene_symbol, cached_ensembl_ids):
     return hits[0]["id"] if hits else None
 
 
+EMPTY_TRACTABILITY = {
+    "resolved": False, "any_sm": False, "any_ab": False,
+    "approved_drug_sm": False, "approved_drug_ab": False, "buckets": [],
+}
+
+
 def tractability_summary(ensembl_id):
+    """Open Targets reports tractability as 8 SM (small-molecule) and 10 AB
+    (antibody) evidence tiers ranging from "Approved Drug" down to weak
+    structural-homology signal ("Structure with Ligand", "Druggable
+    Family"). An independent review found that collapsing all tiers into a
+    single any_sm/any_ab boolean lets "a drug exists" and "this protein
+    family is structurally druggable in principle, no chemical matter yet"
+    read as the same claim -- verified live for TBK1/SOD1/ACSL5, where
+    any_sm=True came ONLY from the weakest tiers, not an approved or
+    clinical-stage drug. approved_drug_sm/approved_drug_ab are reported
+    separately for exactly that reason: never assume any_sm/any_ab implies
+    a real compound exists -- check approved_drug_* or read `buckets`."""
     if not ensembl_id:
-        return {"resolved": False, "any_sm": False, "any_ab": False, "buckets": []}
+        return dict(EMPTY_TRACTABILITY)
     result = _post_graphql(TARGET_QUERY, {"id": ensembl_id})
     target = (result.get("data") or {}).get("target")
     if not target:
-        return {"resolved": False, "any_sm": False, "any_ab": False, "buckets": []}
+        return dict(EMPTY_TRACTABILITY)
     buckets = [t for t in (target.get("tractability") or []) if t.get("value")]
     return {
         "resolved": True,
         "approved_symbol": target.get("approvedSymbol"),
         "any_sm": any(b["modality"] == "SM" for b in buckets),
         "any_ab": any(b["modality"] == "AB" for b in buckets),
+        "approved_drug_sm": any(b["modality"] == "SM" and b["label"] == "Approved Drug" for b in buckets),
+        "approved_drug_ab": any(b["modality"] == "AB" and b["label"] == "Approved Drug" for b in buckets),
         "buckets": [f"{b['modality']}:{b['label']}" for b in buckets],
     }
 
@@ -215,7 +254,8 @@ def build_target_table(max_genes=None):
             tract = tractability_summary(ensembl_id)
         except FetchError as exc:
             log(f"  tractability lookup failed for {g['gene']}: {exc}")
-            tract = {"resolved": False, "any_sm": False, "any_ab": False, "buckets": [], "error": str(exc)}
+            tract = dict(EMPTY_TRACTABILITY)
+            tract["error"] = str(exc)
         rows.append({
             "gene": g["gene"],
             "ensembl_id": ensembl_id,
@@ -223,8 +263,10 @@ def build_target_table(max_genes=None):
             "min_pvalue": g["min_pvalue"],
             "pmids": sorted(g["pmids"]),
             "gwas_accessions": sorted(g["gwas_accessions"]),
-            "tractable_small_molecule": tract["any_sm"],
-            "tractable_antibody": tract["any_ab"],
+            "tractable_small_molecule_any_evidence": tract["any_sm"],
+            "tractable_antibody_any_evidence": tract["any_ab"],
+            "has_approved_drug_small_molecule": tract["approved_drug_sm"],
+            "has_approved_drug_antibody": tract["approved_drug_ab"],
             "tractability_buckets": tract["buckets"],
         })
         if (i + 1) % 20 == 0:
@@ -252,17 +294,24 @@ def main(argv=None):
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    rows = build_target_table(max_genes=args.max_genes)
+    try:
+        rows = build_target_table(max_genes=args.max_genes)
+    except FetchError as exc:
+        print(f"ERROR: could not complete the GWAS Catalog / Open Targets fetch: {exc}", file=sys.stderr)
+        print("This is a NETWORK/API failure -- it does NOT mean zero ALS GWAS loci exist. No output was written.", file=sys.stderr)
+        return 1
     control = check_positive_control(rows)
 
     (out_dir / "gwas_druggable_targets.json").write_text(json.dumps(rows, indent=2))
 
-    csv_lines = ["gene,ensembl_id,n_gwas_associations,min_pvalue,tractable_small_molecule,tractable_antibody,pmids,gwas_accessions"]
+    csv_lines = ["gene,ensembl_id,n_gwas_associations,min_pvalue,tractable_small_molecule_any_evidence,tractable_antibody_any_evidence,has_approved_drug_small_molecule,has_approved_drug_antibody,tractability_buckets,pmids,gwas_accessions"]
     for r in rows:
         csv_lines.append(",".join([
             r["gene"], r["ensembl_id"] or "", str(r["n_gwas_associations"]),
             f"{r['min_pvalue']:.2e}" if r["min_pvalue"] is not None else "",
-            str(r["tractable_small_molecule"]), str(r["tractable_antibody"]),
+            str(r["tractable_small_molecule_any_evidence"]), str(r["tractable_antibody_any_evidence"]),
+            str(r["has_approved_drug_small_molecule"]), str(r["has_approved_drug_antibody"]),
+            "|".join(r["tractability_buckets"]),
             "|".join(r["pmids"]), "|".join(r["gwas_accessions"]),
         ]))
     (out_dir / "gwas_druggable_targets.csv").write_text("\n".join(csv_lines))

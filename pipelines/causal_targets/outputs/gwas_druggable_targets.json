@@ -24,8 +24,10 @@
       "GCST007146",
       "GCST008978"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "AB:UniProt loc high conf",
@@ -54,44 +56,15 @@
       "GCST004792",
       "GCST005647"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:GO CC med conf",
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
-    ]
-  },
-  {
-    "gene": "NR",
-    "ensembl_id": "ENSG00000213281",
-    "n_gwas_associations": 16,
-    "min_pvalue": 2e-14,
-    "pmids": [
-      "19451621",
-      "19734901",
-      "20801717",
-      "31872054"
-    ],
-    "gwas_accessions": [
-      "GCST000406",
-      "GCST000481",
-      "GCST000820",
-      "GCST009529"
-    ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
-    "tractability_buckets": [
-      "SM:Advanced Clinical",
-      "SM:Structure with Ligand",
-      "SM:High-Quality Ligand",
-      "AB:UniProt loc high conf",
-      "AB:GO CC high conf",
-      "PR:UniProt Ubiquitination",
-      "PR:Database Ubiquitination",
-      "PR:Half-life Data",
-      "PR:Small Molecule Binder"
     ]
   },
   {
@@ -107,8 +80,10 @@
       "GCST004692",
       "GCST005647"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "PR:Database Ubiquitination"
@@ -125,41 +100,16 @@
     "gwas_accessions": [
       "GCST005647"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "AB:Human Protein Atlas loc",
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
     ]
-  },
-  {
-    "gene": "intergenic",
-    "ensembl_id": "ENSG00000266835",
-    "n_gwas_associations": 24,
-    "min_pvalue": 4.9999999999999995e-11,
-    "pmids": [
-      "17362836",
-      "18084291",
-      "20801717",
-      "22959728",
-      "24931836",
-      "26580837"
-    ],
-    "gwas_accessions": [
-      "GCST000013",
-      "GCST000127",
-      "GCST000820",
-      "GCST001663",
-      "GCST001664",
-      "GCST002509",
-      "GCST003175",
-      "GCST004792"
-    ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
-    "tractability_buckets": []
   },
   {
     "gene": "ACSL5",
@@ -172,8 +122,10 @@
     "gwas_accessions": [
       "GCST010857"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Ligand",
       "AB:UniProt loc high conf",
@@ -197,8 +149,10 @@
       "GCST000481",
       "GCST000781"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:UniProt SigP or TMHMM",
@@ -218,8 +172,10 @@
       "GCST000481",
       "GCST000781"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination"
     ]
@@ -235,8 +191,10 @@
     "gwas_accessions": [
       "GCST004692"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": []
   },
   {
@@ -250,8 +208,10 @@
     "gwas_accessions": [
       "GCST001981"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc high conf",
       "AB:GO CC high conf",
@@ -270,8 +230,10 @@
     "gwas_accessions": [
       "GCST001981"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination",
       "PR:Database Ubiquitination",
@@ -289,8 +251,10 @@
     "gwas_accessions": [
       "GCST001981"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "AB:UniProt SigP or TMHMM"
@@ -309,8 +273,10 @@
       "GCST004692",
       "GCST005647"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -333,8 +299,10 @@
     "gwas_accessions": [
       "GCST004692"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -354,8 +322,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
@@ -372,8 +342,10 @@
     "gwas_accessions": [
       "GCST001981"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -395,8 +367,10 @@
     "gwas_accessions": [
       "GCST000781"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Pocket",
@@ -420,8 +394,10 @@
       "GCST004692",
       "GCST005647"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "PR:Database Ubiquitination",
@@ -439,8 +415,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination",
       "PR:Database Ubiquitination"
@@ -457,8 +435,10 @@
     "gwas_accessions": [
       "GCST005647"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
@@ -479,8 +459,10 @@
       "GCST000127",
       "GCST000260"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Pocket",
       "SM:Druggable Family",
@@ -501,8 +483,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:UniProt SigP or TMHMM",
@@ -523,8 +507,10 @@
     "gwas_accessions": [
       "GCST005647"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Druggable Family",
       "AB:UniProt loc high conf",
@@ -546,8 +532,10 @@
       "GCST002509",
       "GCST002510"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:Druggable Family",
@@ -570,8 +558,10 @@
       "GCST002509",
       "GCST002510"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination",
       "PR:Database Ubiquitination",
@@ -590,8 +580,10 @@
       "GCST002509",
       "GCST002510"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination"
     ]
@@ -607,8 +599,10 @@
     "gwas_accessions": [
       "GCST005647"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": []
   },
   {
@@ -622,8 +616,10 @@
     "gwas_accessions": [
       "GCST004793"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt SigP or TMHMM",
       "AB:GO CC med conf",
@@ -641,8 +637,10 @@
     "gwas_accessions": [
       "GCST004793"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:UniProt SigP or TMHMM",
@@ -660,8 +658,10 @@
     "gwas_accessions": [
       "GCST001664"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt SigP or TMHMM"
     ]
@@ -679,8 +679,10 @@
       "GCST001664",
       "GCST002509"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
@@ -697,8 +699,10 @@
     "gwas_accessions": [
       "GCST005647"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Pocket",
       "AB:UniProt loc high conf",
@@ -721,8 +725,10 @@
       "GCST001664",
       "GCST004792"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC med conf",
       "PR:Half-life Data"
@@ -739,8 +745,10 @@
     "gwas_accessions": [
       "GCST002274"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Advanced Clinical",
       "SM:High-Quality Ligand",
@@ -761,8 +769,10 @@
     "gwas_accessions": [
       "GCST001664"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Half-life Data"
     ]
@@ -778,8 +788,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
@@ -796,8 +808,10 @@
     "gwas_accessions": [
       "GCST001664"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Ligand",
       "SM:Druggable Family",
@@ -817,8 +831,10 @@
     "gwas_accessions": [
       "GCST001664"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination"
     ]
@@ -834,8 +850,10 @@
     "gwas_accessions": [
       "GCST001664"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination",
       "PR:Database Ubiquitination"
@@ -852,8 +870,10 @@
     "gwas_accessions": [
       "GCST001664"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "AB:UniProt loc med conf",
@@ -873,8 +893,10 @@
     "gwas_accessions": [
       "GCST001460"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": []
   },
   {
@@ -888,8 +910,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "AB:GO CC med conf",
@@ -908,8 +932,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc high conf",
       "AB:GO CC high conf",
@@ -928,8 +954,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt SigP or TMHMM"
     ]
@@ -945,8 +973,10 @@
     "gwas_accessions": [
       "GCST002509"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand"
     ]
@@ -962,8 +992,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:Human Protein Atlas loc",
       "PR:Database Ubiquitination"
@@ -980,8 +1012,10 @@
     "gwas_accessions": [
       "GCST003175"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:Druggable Family",
@@ -999,8 +1033,10 @@
     "gwas_accessions": [
       "GCST004793"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination",
       "PR:Database Ubiquitination",
@@ -1018,8 +1054,10 @@
     "gwas_accessions": [
       "GCST004793"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:Human Protein Atlas loc",
       "PR:UniProt Ubiquitination",
@@ -1037,8 +1075,10 @@
     "gwas_accessions": [
       "GCST004791"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:Human Protein Atlas loc",
@@ -1056,8 +1096,10 @@
     "gwas_accessions": [
       "GCST004791"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination",
       "OC:Advanced Clinical"
@@ -1074,8 +1116,10 @@
     "gwas_accessions": [
       "GCST004791"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt SigP or TMHMM",
       "AB:GO CC med conf",
@@ -1094,8 +1138,10 @@
     "gwas_accessions": [
       "GCST000072"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Ligand",
       "SM:Druggable Family",
@@ -1117,8 +1163,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -1141,8 +1189,10 @@
     "gwas_accessions": [
       "GCST004793"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
@@ -1159,8 +1209,10 @@
     "gwas_accessions": [
       "GCST004791"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -1182,8 +1234,10 @@
     "gwas_accessions": [
       "GCST004791"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "PR:Database Ubiquitination",
@@ -1201,8 +1255,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Pocket",
       "PR:UniProt Ubiquitination"
@@ -1219,8 +1275,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Advanced Clinical",
       "SM:High-Quality Ligand",
@@ -1245,8 +1303,10 @@
     "gwas_accessions": [
       "GCST000013"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:UniProt Ubiquitination"
     ]
@@ -1262,8 +1322,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -1286,8 +1348,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "SM:High-Quality Ligand",
@@ -1309,8 +1373,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "PR:Database Ubiquitination",
@@ -1328,8 +1394,10 @@
     "gwas_accessions": [
       "GCST000013"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt SigP or TMHMM",
       "PR:Database Ubiquitination"
@@ -1346,8 +1414,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "AB:UniProt loc med conf",
@@ -1366,8 +1436,10 @@
     "gwas_accessions": [
       "GCST001460"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:UniProt SigP or TMHMM",
@@ -1385,8 +1457,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Ligand",
       "AB:GO CC high conf",
@@ -1407,8 +1481,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "AB:UniProt loc med conf",
@@ -1427,8 +1503,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": true,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Approved Drug",
       "SM:Structure with Ligand",
@@ -1452,8 +1530,10 @@
     "gwas_accessions": [
       "GCST004792"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": true,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Approved Drug",
       "SM:Structure with Ligand",
@@ -1478,8 +1558,10 @@
     "gwas_accessions": [
       "GCST004792"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination"
     ]
@@ -1495,8 +1577,10 @@
     "gwas_accessions": [
       "GCST001663"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:GO CC high conf",
       "PR:Database Ubiquitination",
@@ -1514,8 +1598,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": []
   },
   {
@@ -1529,8 +1615,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:Structure with Ligand",
       "PR:UniProt Ubiquitination",
@@ -1548,8 +1636,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc med conf",
       "AB:UniProt SigP or TMHMM",
@@ -1569,8 +1659,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "AB:UniProt loc high conf",
       "AB:UniProt SigP or TMHMM",
@@ -1590,8 +1682,10 @@
     "gwas_accessions": [
       "GCST000013"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination"
     ]
@@ -1607,8 +1701,10 @@
     "gwas_accessions": [
       "GCST000127"
     ],
-    "tractable_small_molecule": true,
-    "tractable_antibody": true,
+    "tractable_small_molecule_any_evidence": true,
+    "tractable_antibody_any_evidence": true,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "SM:High-Quality Ligand",
       "SM:Druggable Family",
@@ -1630,8 +1726,10 @@
     "gwas_accessions": [
       "GCST000406"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination"
     ]
@@ -1647,8 +1745,10 @@
     "gwas_accessions": [
       "GCST004792"
     ],
-    "tractable_small_molecule": false,
-    "tractable_antibody": false,
+    "tractable_small_molecule_any_evidence": false,
+    "tractable_antibody_any_evidence": false,
+    "has_approved_drug_small_molecule": false,
+    "has_approved_drug_antibody": false,
     "tractability_buckets": [
       "PR:Database Ubiquitination",
       "PR:Half-life Data"
