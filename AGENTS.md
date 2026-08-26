@@ -71,7 +71,8 @@ Follow these rules exactly — they exist because agents already broke them once
       each awaits pipeline assignment and adversarial review per AGENTS.md rules.
 - [~] H-001/H-002 blocked-on: exp001 outputs (sprint1-repurposing agent) — refinement
       queries are pre-registered against config.yaml positive controls.
-- [x] H-007 falsification tested on GSE303931 + GSE283507 (exp002_c9orf72_module): nucleolar/speckle criterion-1 bar failed twice -> VERDICT KILLED (pending adversarial review); replacement draft hypotheses/H-007b.md (cytoskeletal/ECM/synaptic module) opened by c9orf72-factory.
+- [x] H-007 falsification tested on GSE303931 + GSE283507 (exp002_c9orf72_module): nucleolar/speckle criterion-1 bar failed twice -> VERDICT KILLED; KILL CONFIRMED by reviews/exp001_review sibling reviews/exp002_review.md.
+- [x] H-007b remediation + kill CONFIRMED by review-h007b-1 (reviews/h007b_review.md, branch reviews/h007b): count-level GSE283507 rerun fails pre-registered FC-A leg (a) (down_FDR10 x GO:0007010 fold 1.578 < 2.0, independently reproduced 1.535); FC-B rescue 0/2 -> reversal premise dead. NOTE: confirming commits 5d64b58/b218517 still unmerged to main - merge required. DRAFT-NOTE: optional H-007c synapse-primary (GO:0045202) hypothesis permitted ONLY as declared post-hoc discovery with sole out-of-sample gate at the unchanged 2.0-fold standard.
 - [~] H-003/H-004 depend on: Stream A scaffolding `pipelines/causal_targets/`
       (unclaimed; MinE DAC application should be started early per research/04).
 
