@@ -19,7 +19,58 @@ from scipy import stats
 HERE = os.path.abspath(os.path.dirname(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
-import run as exp002  # noqa: E402 (load_go_sets + DPR_CURATED)
+import run as exp002  # noqa: E402 (DPR_CURATED + TPM loaders); GO loading is local below
+import gzip
+from collections import deque
+
+def load_go_descendants(refdir, go_ids):
+    """GO descendants closure -> gene-symbol sets, from goa_human.gaf.gz + go-basic.obo."""
+    ann, parents, alt = {}, {}, {}
+    with gzip.open(os.path.join(refdir, "goa_human.gaf.gz"), "rt") as f:
+        for line in f:
+            if line.startswith("!"):
+                continue
+            p_ = line.rstrip("\n").split("\t")
+            if len(p_) < 15 or p_[3].startswith("NOT"):
+                continue
+            ann.setdefault(p_[4], set()).add(p_[2])
+    cur = None
+    with open(os.path.join(refdir, "go-basic.obo")) as f:
+        for line in f:
+            line = line.rstrip()
+            if line == "[Term]":
+                cur = {"is_a": []}
+            elif cur is None:
+                continue
+            elif line == "":
+                if cur and "id" in cur:
+                    parents[cur["id"]] = cur["is_a"]
+                    for a in cur.get("alt_ids", []):
+                        alt[a] = cur["id"]
+                cur = None
+            elif cur is not None:
+                if line.startswith("id: "): cur["id"] = line[4:]
+                elif line.startswith("alt_id: "): cur.setdefault("alt_ids", []).append(line[8:])
+                elif line.startswith("is_a: "): cur["is_a"].append(line.split()[1])
+    children = {t: [] for t in parents}
+    for t, pas in parents.items():
+        for pa in pas:
+            if pa in children:
+                children[pa].append(t)
+
+    def genes_for(term):
+        seen, dq = {term}, deque([term])
+        while dq:
+            x = dq.popleft()
+            for c in children.get(x, []):
+                if c not in seen:
+                    seen.add(c); dq.append(c)
+        gs = set()
+        for t in seen:
+            gs |= ann.get(t, set()) | ann.get(alt.get(t, t), set())
+        return gs
+
+    return {g: genes_for(g) for g in go_ids}
 
 DATA = os.path.join(ROOT, "data", "gse283507", "GSE283507_raw_Count_FPKM_TPM.csv.gz")
 RESULTS = os.path.join(HERE, "results")
@@ -37,11 +88,15 @@ FAMILIES = {
 
 def median_ratio_size_factors(counts):
     """DESeq2-style size factors on a genes x samples raw-count matrix."""
-    valid = counts > 0
-    geom = np.exp(np.nanmean(np.log(counts.astype(float)), axis=1))
-    ok = geom > 0
+    counts = counts.astype(float)
+    pos = np.where(counts > 0, counts, np.nan)
+    with np.errstate(divide="ignore"):
+        geom = np.exp(np.nanmean(np.log(pos), axis=1))
+    ok = np.isfinite(geom) & (geom > 0)
     ratios = counts[ok] / geom[ok, None]
-    return np.median(ratios, axis=0)
+    sf = np.median(ratios, axis=0)
+    sf[sf <= 0] = 1.0
+    return sf
 
 def load_counts():
     df = pd.read_csv(DATA)
@@ -131,7 +186,9 @@ def main():
           f"(artifact TPMs were ~0.019)")
     print(f"DE: {len(res)} tested | FDR<0.10 down={len(down)} up={len(up)}")
 
-    go = exp002.load_go_sets(os.path.join(ROOT, "data", "gse303931", "ref"))
+    all_go = sorted({t for terms in FAMILIES.values() for t in terms})
+    go = load_go_descendants(os.path.join(ROOT, "data", "gse303931", "ref"), all_go)
+    print({g: len(s) for g, s in go.items()})
     fam_sets = {}
     for fam, terms in FAMILIES.items():
         s = set().union(*[go[t] for t in terms]) if len(terms) > 1 else set(go[terms[0]])

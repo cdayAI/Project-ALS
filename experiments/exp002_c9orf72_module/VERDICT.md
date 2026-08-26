@@ -55,3 +55,20 @@ scoring on this module would be underpowered.
 
 Pipeline recovered Y-linked UTY/TMSB4Y as top hits in the GSE303931 contrast (documented
 in config.yaml); also flags a sex/culture-composition confound in that dataset.
+
+## Addendum (post-review remediation, same day)
+
+reviews/exp002_review.md confirmed the H-007 kill and ordered: committed analysis code for
+the GSE283507 arm, full gene universe, raw-count reprocessing, and re-derived H-007b
+criteria committed BEFORE recomputation (all satisfied: commit 5d64b58).
+
+Count-level rerun (replication_gse283507.py --with-fcb):
+- median within-group log2 variance now 0.44 (artifact TPMs were ~0.019) - artifact resolved
+- down_FDR10 x primary cytoskeleton organization: fold 1.578, P=5e-05, null p95=1.161 ->
+  BELOW the pre-registered >=2-fold bar; H-007b FC-A leg (a) FAILED
+- FC-B count-level: 0/2 disease genotypes rescue-positive -> FAILED
+- Full table: results/gse283507_countlevel_enrichment.csv
+
+Honest bottom line: the cytoskeletal/ECM/synaptic signal is real but modest (~1.6-2.0x,
+highly significant); it does not meet the same 2-fold standard that killed H-007.
+H-007b marked killed per its own pre-registered criteria, pending adversarial confirmation.
