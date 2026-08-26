@@ -40,7 +40,11 @@ Gotchas found during bring-up:
 - Even for structure-only runs boltz pre-fetches the affinity checkpoint (`boltz2_aff.ckpt`, ~2.06 GB) into the cache on first invocation.
 - On Apple Silicon, Lightning sees MPS but boltz runs were launched with `--accelerator cpu`; MPS support is untested here.
 
-Reduced recycling/sampling steps keep a CPU-only run tractable on 16 GB RAM; raise to defaults (`--recycling_steps 3 --sampling_steps 200`) once any CUDA/MPS-capable box is available.
+Reduced recycling/sampling steps keep a CPU-only run tractable on 16 GB RAM (~58 min for a 310 aa domain + 34-atom ligand); raise to defaults (`--recycling_steps 3 --sampling_steps 200`) once any CUDA/MPS-capable box is available.
+**RESULT (2026-08-25): PASS.** Run completed on CPU in 57:52 wall-clock.
+Confidence: `confidence_score` 0.843, `iptm` 0.963, `complex_plddt` 0.814 — high for a kinase-domain complex predicted without MSA (`msa: empty`).
+Pose sanity: ligand <4.5 A contact residues = {15-18, 21, 23, 36, 38, 68, 86-92, 139, 142, 156-157} — i.e., glycine-rich loop, HINGE (86-92), and DFG-proximal residues, exactly where ATP-site inhibitors bind in PDB 4IM0 chain A. The stack rediscovers the known binding site with no pocket input.
+
 Positive-control criterion for later full runs: predicted ligand pocket should coincide with the ATP-site hinge region seen in 4IM0 chain A (compare contact residues).
 
 ## Disk & RAM budget (16 GB-RAM machine)
