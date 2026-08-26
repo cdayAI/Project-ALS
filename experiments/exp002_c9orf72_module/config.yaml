@@ -1,0 +1,79 @@
+# Experiment: exp002_c9orf72_module
+# Hypothesis: H-007 (nucleolar-stress + speckle-disruption DPR correlate module)
+id: exp002_c9orf72_module
+hypothesis: H-007
+branch: exp/h007-c9orf72-module
+created: 2026-08-25
+owner_agent: c9orf72-factory
+
+dataset:
+  accession: GSE303931
+  source: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE303nnn/GSE303931/suppl/GSE303931_RAW.tar
+  sha_size_bytes: 10106880
+  local_dir: data/gse303931/
+  description: >
+    Isogenic C9orf72 patient iPSC-derived cortical neurons (iCNs), deep RNA-seq,
+    salmon gene-level quant (TPM). Two isogenic pairs: C929 and C952.
+    Conditions per pair: Mutant vs IsoControl, 3 replicates each (n=12 samples).
+    Series PMID: 42221822.
+  samples:
+    lines: [C929, C952]
+    conditions: {mutant: 6, control: 6}
+    unit: TPM (gene-level, ENSG IDs with versions)
+
+analysis:
+  expression_filter: "TPM >= 1 in at least 6 of 12 samples"
+  transform: log2(TPM + 1)
+  design: "y ~ condition(mutant=1) + line(C952=1)   # OLS per gene"
+  test: "two-sided t-test on condition coefficient, df = n - p = 9"
+  multiple_testing: BH FDR
+  module_definitions:
+    primary: "BH FDR < 0.10"
+    secondary:
+      - "FDR < 0.05 up-regulated only"
+      - "FDR < 0.05 down-regulated only"
+      - "top 500 by |t| plus bottom 500 by t"
+
+pathway_sets:
+  source: Gene Ontology
+  files:
+    annotations: goa_human.gaf.gz (downloaded https://current.geneontology.org/annotations/goa_human.gaf.gz)
+    ontology: go-basic.obo (downloaded https://current.geneontology.org/ontology/go-basic.obo)
+  terms:
+    nucleolus: GO:0005730
+    ribosome_biogenesis: GO:0042254
+    nuclear_speckle: GO:0016607
+    mrna_splicing_major: GO:0000398
+  propagation: descendants included via obo is_a closure
+  dpr_curated:
+    rationale: "literature set: ISR/eIF2 axis + nucleolar p53 axis + core speckle factors
+                (PMID 36931278 suppressor screens; PMID 39181135 speckle disruption)"
+    genes: [EIF2S1, EIF2AK2, EIF2AK3, EIF2AK4, ATF4, DDIT3, XBP1, ERN1, HSPA5, DNAJB9,
+            TP53, CDKN1A, MDM2, NPM1, NCL, NOLC1, DDX21, TCOF1, RRN3, POLR1A, POLR1B,
+            RPS19, RPL11, UBTF, SON, SRSF1, SRSF2, HNRNPA1, HNRNPA2B1, TARDBP]
+
+enrichment_test:
+  background: tested expressed genes with HGNC symbols (n=16253)
+  null: random size-matched gene draws from background, 20000 permutations, seed 20260825
+  statistic: fold enrichment = observed overlap / expected hypergeometric mean
+
+falsification_criteria_from_H-007:
+  FC1_module_faithfulness:
+    criterion: ">= 2-fold enrichment of ribosome biogenesis/nucleolar AND speckle/splicing genes
+                in the module vs matched random sets, permutation P <= 0.05; otherwise killed"
+    result_in_this_dataset: TRIGGERED (see results/enrichment.csv - depletion observed)
+
+lincs_crossref:
+  level5_metadata_present: true (data/lincs/GSE92742_Broad_LINCS_{gene,pert,sig}_info.txt.gz)
+  gctx_matrix_present: true but OWNED BY ANOTHER AGENT - not read here, no re-download
+  scope_run: metadata-only coverage cross-ref
+  full_reversal_scoring_dependency: pipelines/perturbation_signatures/ (not yet built)
+
+positive_control:
+  known_truth: "Y-linked genes (UTY, KDM5D, DDX3Y, TMSB4Y) must rank at top when a
+                contrast carries sex/Y-dosage differences"
+  outcome: "pipeline recovered UTY (log2FC +3.06, FDR 4.7e-05) and TMSB4Y (+2.32, FDR 1.3e-04)
+            as top hits in BOTH line pairs' mutant-vs-control contrast"
+  caveat: "isogenic pairs are expected to be sex-matched; recovery of a Y signal inside the
+           mutant-vs-control contrast flags a culture-composition/QC confound rather than
+           validating biology. Documented as dataset caveat."
