@@ -47,6 +47,7 @@ happens through partners, purchased assays, and collaboration.
 - [x] Cross-brief synthesis & stream prioritization (`research/00_synthesis.md`)
 - [ ] Pilot Sprint #1: transcriptome-based drug repurposing loop (exp001 running)
 - [x] Stream C: patient-facing trial matcher (`tools/trial_matcher/`, `reviews/trial_matcher.md`)
+- [x] Stream A scaffolding: GWAS causal targets + druggability overlay (`pipelines/causal_targets/`, `reviews/causal_targets.md`)
 
 ## Who this is for
 

@@ -64,9 +64,16 @@ Follow these rules exactly — they exist because agents already broke them once
       CLAIMED BY: claude (pipeline/trial-matcher branch) - DONE, independently reviewed
       (reviews/trial_matcher.md). Real matching bugs found in both self-testing and
       independent review; see README's Known limitations before extending this.
-- [ ] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
-      fetch GWAS Catalog EFO_0000253 loci, druggable-genome overlay, colocalization
-      plan for Project MinE summary stats (application pending). CLAIMED BY: (available)
+- [x] **Stream A scaffolding: causal target triage** `pipelines/causal_targets/` -
+      fetch GWAS Catalog loci (81 -> 79 after filtering non-gene tokens),
+      Open Targets druggable-genome overlay, colocalization plan for Project
+      MinE summary stats (application pending -- see COLOCALIZATION_PLAN.md,
+      not yet submitted). CLAIMED BY: claude (pipeline/causal-targets branch)
+      - DONE, independently reviewed (reviews/causal_targets.md). Real
+      correctness bug (placeholder genes) + honesty gap (druggability tier
+      collapsing) found and fixed; TARDBP/FUS deliberately excluded from
+      positive control, independently re-verified as correct. Unblocks
+      H-003/H-004.
 - [x] **exp001 adversarial review** - DONE 2026-08-25: KILLED (see reviews/exp001_review.md,
       branch reviews/exp001). Positive-control gate fails exposure matching; top hits do not
       replicate vs GSE255602. Retry requires H-001 deconvolution + null-calibrated ranking. Reviewer must
@@ -85,10 +92,14 @@ Follow these rules exactly — they exist because agents already broke them once
       each awaits pipeline assignment and adversarial review per AGENTS.md rules.
 - [~] H-001/H-002 blocked-on: exp001 outputs (sprint1-repurposing agent) — refinement
       queries are pre-registered against config.yaml positive controls.
+- [x] H-003/H-004 unblocked: Stream A scaffolding `pipelines/causal_targets/`
+      done -- GWAS gene/druggability table at
+      pipelines/causal_targets/outputs/gwas_druggable_targets.csv. Rare-variant
+      colocalization (needed for the TARDBP/FUS-shaped half of the causal
+      picture) still blocked on Project MinE DAC access -- application not yet
+      submitted; see pipelines/causal_targets/COLOCALIZATION_PLAN.md.
 - [x] H-007 falsification tested on GSE303931 + GSE283507 (exp002_c9orf72_module): nucleolar/speckle criterion-1 bar failed twice -> VERDICT KILLED; KILL CONFIRMED by reviews/exp001_review sibling reviews/exp002_review.md.
 - [x] H-007b remediation + kill CONFIRMED by review-h007b-1 (reviews/h007b_review.md, branch reviews/h007b): count-level GSE283507 rerun fails pre-registered FC-A leg (a) (down_FDR10 x GO:0007010 fold 1.578 < 2.0, independently reproduced 1.535); FC-B rescue 0/2 -> reversal premise dead. NOTE: confirming commits 5d64b58/b218517 still unmerged to main - merge required. DRAFT-NOTE: optional H-007c synapse-primary (GO:0045202) hypothesis permitted ONLY as declared post-hoc discovery with sole out-of-sample gate at the unchanged 2.0-fold standard.
-- [~] H-003/H-004 depend on: Stream A scaffolding `pipelines/causal_targets/`
-      (unclaimed; MinE DAC application should be started early per research/04).
 
 ## Working-tree isolation (MANDATORY - incident 2026-08-25)
 Never share one checkout between agents. On task start run:
