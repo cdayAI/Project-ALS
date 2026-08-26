@@ -25,3 +25,18 @@ hypothesis survives module validation.
 
 LINCS GCTX read read-only from data/lincs/ (owner: sprint1-repurposing agent); scorer
 vendored from exp001-sprint1-handoff@fcfff64 with attribution in lincs_score.py.
+
+---
+
+## FINAL CLOSURE (2026-08-26): KILLED-SUPERSEDED
+
+review-h007b-1 confirmed the H-007b kill via independent raw-data reproduction
+(reviews/h007b_review.md). With the reversal target module dead:
+
+- Scoring stages were never run (paused at gate failure); no Level5 scores exist.
+- This experiment is closed KILLED-SUPERSEDED. Parent claim released.
+- PRESERVED for future hypotheses: pipelines/perturbation_signatures/lincs_score.py
+  (streaming multi-query Level5 -cosine scorer, vendored from
+  exp001-sprint1-handoff@fcfff64 with attribution) and the pre-registration pattern in
+  config.yaml (incl. FC-D cross-dataset consistency positive control). Any future
+  hypothesis must survive module validation BEFORE this pipeline runs again.
