@@ -1,0 +1,17 @@
+query_name,lincs_pert_iname,rank,percentile,direction
+riluzole,riluzole,2758.0,13.9,neutral
+edaravone,edaravone,6524.0,32.9,neutral
+dexamethasone,dexamethasone,1375.0,6.9,reverses
+minocycline,minocycline,18178.0,91.8,mimics
+sirolimus,sirolimus,2158.0,10.9,neutral
+rapamycin,sirolimus,2158.0,10.9,neutral
+memantine,memantine,2506.0,12.6,neutral
+valproic acid,valproic acid,,,not tested in LINCS phase 1
+gabapentin,gabapentin,16259.0,82.1,mimics
+baclofen,baclofen,19498.0,98.4,mimics
+prednisolone,prednisolone,5969.0,30.1,neutral
+ibuprofen,ibuprofen,2041.0,10.3,neutral
+aspirin,aspirin,3244.0,16.4,neutral
+methylprednisolone,methylprednisolone,1753.0,8.8,reverses
+tacrolimus,tacrolimus,785.0,4.0,reverses
+cyclosporine,cyclosporin a,,,not tested in LINCS phase 1

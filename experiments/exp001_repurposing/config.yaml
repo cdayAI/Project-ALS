@@ -9,23 +9,25 @@ disease:
   series_matrix: data/gse124439/series_matrix.txt
   group_col: "sample group"
   case_label: "ALS Spectrum MND"
-  control_label: "Non-Neurological Control"           # 'Other Neurological Disease' samples are excluded
+  control_label: "Non-Neurological Control"   # 'Other Neurological Disorders' samples excluded
   min_count_per_million: 1.0         # keep genes with CPM > 1 in at least min_samples
   min_samples: 17                    # smallest group size
   de_method: moderated_t             # limma-style empirical-Bayes moderated t (numpy/scipy impl)
 
 lincs:
-  level5_gctx: data/lincs/GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz
+  # GSE92742 Level5 COMPZ.MODZ signatures (21.33 GB gz / 23.38 GB HDF5).
+  # run.py auto-decompresses the .gz sibling into this path if missing.
+  level5_gctx: data/lincs/GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx
   sig_info: data/lincs/GSE92742_Broad_LINCS_sig_info.txt.gz
   pert_info: data/lincs/GSE92742_Broad_LINCS_pert_info.txt.gz
   gene_info: data/lincs/GSE92742_Broad_LINCS_gene_info.txt.gz
   pert_type_filter: trt_cp           # small-molecule perturbagens only
-  gene_block_size: 500               # rows streamed per chunk when scoring
-  score_method: cosine_reversal      # -cosine(query, signature) on shared landmark/inferred genes
-  query_top_genes: null              # null = use all shared genes, weighted by signed statistic
+  sig_block_size: 10000              # signature rows streamed per chunk when scoring
+  score_method: cosine_reversal      # -cosine(query, signature) over shared inferred genes
+  query_top_genes: null              # null = all shared genes, weighted by moderated t
 
 positive_controls:
-  # known neuro-active / immune-active compounds; ranks must be sensible for the method to be trusted
+  # known neuro-active / immune-active compounds; ranks must be sensible for trust
   compounds: [riluzole, edaravone, dexamethasone, minocycline, sirolimus, rapamycin,
               memantine, valproic acid, gabapentin, baclofen, prednisolone, ibuprofen,
               aspirin, methylprednisolone, tacrolimus, cyclosporine]
@@ -33,7 +35,7 @@ positive_controls:
 annotation:
   top_n_drugs: 30
   chembl_url: https://www.ebi.ac.uk/chembl/api/data/molecule.json
-  pubchem_url: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/properties/JSON
+  pubchem_url: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound
   cache: outputs/annotation_cache.json
 
 outputs:

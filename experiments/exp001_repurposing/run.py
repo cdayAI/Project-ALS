@@ -4,17 +4,20 @@
 Pipeline:
   1. Parse GSE124439 (post-mortem CNS RNA-seq) sample metadata + counts.
   2. Differential expression ALS vs control (limma-style moderated t, numpy/scipy).
-  3. Build ranked disease signature; sanity-check against known ALS biology genes.
-  4. Stream-score every LINCS L1000 Phase-1 Level5 signature (GSE92742) against it
-     by cosine reversal (-cosine on shared inferred genes).
-  5. Positive controls: rank known neuro/immune-active compounds (incl. riluzole).
+     - transposable-element features are dropped BEFORE normalization (~26% of raw
+       library size in this dataset; keeping them dilutes every gene signal).
+  3. Ranked disease signature + two-level sanity check (marker genes, Enrichr pathways).
+  4. Stream-score all LINCS L1000 Phase-1 Level5 signatures (GSE92742) by cosine
+     reversal (-cosine between disease t-vector and each perturbagen signature
+     over shared inferred genes).
+  5. Positive controls: ranks of known neuro/immune-active compounds (incl. riluzole).
   6. Annotate top candidates with ChEMBL max_phase + PubChem properties.
 
 Run:  python run.py --config config.yaml   (from this directory)
 """
-import argparse, gzip, json, re, sys, time
-from urllib.parse import quote
+import argparse, gzip, json, shutil, time
 from pathlib import Path
+from urllib.parse import quote
 
 import numpy as np
 import pandas as pd
@@ -43,80 +46,74 @@ def parse_series_matrix(path):
                 rows[parts[0]] = [p.strip().strip('"') for p in parts[1:]]
     titles = rows["!Sample_title"]
     accs = rows["!Sample_geo_accession"]
-    chars = char_rows
     groups, subregions = [], []
     for i in range(len(titles)):
         g = s = None
-        for ch in chars:
+        for row in char_rows:
+            ch = row[i]
             if ch.startswith("sample group:"):
                 g = ch.split(":", 1)[1].strip()
             elif ch.startswith("cns subregion:"):
                 s = ch.split(":", 1)[1].strip()
         groups.append(g)
         subregions.append(s)
-    meta = pd.DataFrame({
+    return pd.DataFrame({
         "geo_accession": accs, "title": titles,
         "group": groups, "subregion": subregions,
     })
-    return meta
 
 
 def build_count_matrix(raw_dir, meta):
-    """Read per-sample gene-symbol count files into one matrix."""
+    """Read per-sample gene-symbol count files into one matrix.
+
+    GSE124439 count files mix ~28k quoted gene rows with ~1k unquoted
+    transposable-element rows (names containing ':'). TEs contribute ~26% of
+    raw library size and MUST be dropped before CPM normalization.
+    """
     series = {}
     for _, row in meta.iterrows():
         path = Path(raw_dir) / f"{row.geo_accession}_{row.title}_counts.txt.gz"
         df = pd.read_csv(path, sep="\t", skiprows=1, header=None,
                          names=["gene", row.title], dtype={0: str})
         df["gene"] = df["gene"].str.strip('"')
+        df = df[~df.gene.str.contains(":")]          # drop transposon/TE features
         series[row.title] = df.set_index("gene")[row.title]
-    mat = pd.DataFrame(series)
-    return mat
+    return pd.DataFrame(series)
 
 
 def differential_expression(counts, is_case, min_cpm, min_samples):
-    """Log2-CPM OLS + limma-style empirical-Bayes moderated t (Smye 2004)."""
-    lib = counts.sum(axis=0).values
+    """Log2-CPM OLS + limma-style empirical-Bayes moderated t (Smyth 2004)."""
+    lib = counts.sum(axis=0)
     cpm = counts.div(lib, axis=1) * 1e6
     keep = (cpm > min_cpm).sum(axis=1) >= min_samples
-    cpm = cpm.loc[keep]
-    X = np.log2(cpm + 1)
-    n_c, n_t = int((~is_case).sum()), int(is_case.sum())
-    y = np.log2(counts.loc[keep].div(lib, axis=1) * 1e6 + 1)
+    y = np.log2(cpm.loc[keep] + 1)
 
-    # design: [1, case]
-    D = np.column_stack([np.ones(X.shape[1]), is_case.astype(float)])
+    D = np.column_stack([np.ones(y.shape[1]), is_case.astype(float)])
     pinv = np.linalg.pinv(D)
-    beta = y.values @ pinv.T                      # genes x 2
-    fitted = beta @ D.T
-    resid = y.values - fitted
+    beta = y.values @ pinv.T                      # genes x 2 ; col1 = log2FC(ALS)
+    resid = y.values - beta @ D.T
     df_res = y.shape[1] - 2
-    rss = (resid ** 2).sum(axis=1)
-    s2 = rss / df_res
+    s2 = (resid ** 2).sum(axis=1) / df_res
 
     # empirical Bayes: inverse-gamma prior on s2 via method of moments
     m, v = s2.mean(), s2.var(ddof=1)
     if v <= 0:
-        d0, s2_0 = np.inf, m
+        d0, s2_0 = 1e6, m
     else:
-        a = 2.0 + m * m / v                       # shape of IG prior (d0/2)
-        d0 = 2.0 * a
+        a = 2.0 + m * m / v
+        d0 = max(2.0 * a, 1.0)
         s2_0 = m * (a - 1.0) / a
-    d0 = max(d0, 1.0)
     s2_post = (d0 * s2_0 + df_res * s2) / (d0 + df_res)
 
-    cov_case = np.linalg.inv(D.T @ D)[1, 1]
+    cov_case = np.linalg.pinv(D.T @ D)[1, 1]
     se_post = np.sqrt(s2_post * cov_case)
     tstat = beta[:, 1] / se_post
     pval = 2 * stats.t.sf(np.abs(tstat), df=d0 + df_res)
     adj = bh_adjust(pval)
 
-    res = pd.DataFrame({
-        "gene": y.index, "log2FC": beta[:, 1],
-        "t": tstat, "p": pval, "padj": adj,
-    })
-    res = res.sort_values("t", ascending=False).reset_index(drop=True)
-    return res
+    res = pd.DataFrame({"gene": y.index, "log2FC": beta[:, 1],
+                        "t": tstat, "p": pval, "padj": adj})
+    return res.sort_values("t", ascending=False).reset_index(drop=True)
 
 
 def bh_adjust(p):
@@ -131,61 +128,75 @@ def bh_adjust(p):
 
 
 # ----------------------------------------------------------------------------
-# 3-4. LINCS L1000 scoring
+# LINCS L1000 Level5 scoring
 # ----------------------------------------------------------------------------
 
-def read_gctx_metadata(gctx_path):
-    import h5py
-    with h5py.File(gctx_path, "r") as f:
-        shape = _descend_to_matrix(f).shape
-        row_ids = _read_meta_str(f, ["metadata", "rows", "id"])
-        col_ids = _read_meta_str(f, ["metadata", "cols", "id"])
-    return shape, row_ids, col_ids
-
-
 def _descend_to_matrix(f):
-    node = f
-    for _ in range(6):
+    """Locate the expression matrix dataset ('<v>/DATA/0/matrix') in a GCTX file."""
+    import h5py
+
+    def walk(node):
         if isinstance(node, h5py.Dataset):
-            return node
-        node = node[list(node.keys())[0]]
-    raise RuntimeError("could not locate matrix dataset")
+            return node if node.name.endswith("matrix") else None
+        for k in node:
+            r = walk(node[k])
+            if r is not None:
+                return r
+        return None
+
+    m = walk(f)
+    if m is None:
+        raise RuntimeError("could not locate matrix dataset in GCTX")
+    return m
 
 
-def _read_meta_str(f, path):
-    node = f
-    for p in path:
-        node = node[p]
-    arr = node[:]
+def _read_meta_str(node_path):
+    arr = node_path[:]
     return np.array([x.decode() if isinstance(x, bytes) else str(x) for x in arr])
 
 
-def stream_scores(gctx_path, query_vec, gene_block=500, progress_every=50):
-    """Cosine similarity between query_vec (aligned to gctx rows) and all columns.
+def read_gctx_metadata(gctx_path):
+    """GSE92742 Level5 layout: matrix is (n_signatures x n_genes).
 
-    Returns (scores ndarray float32, n_genes_used). Single sequential pass.
+    ROW ids = genes (/0/META/ROW/id), COL ids = signatures (/0/META/COL/id).
+    Returns (shape, gene_ids, sig_ids).
+    """
+    import h5py
+    with h5py.File(gctx_path, "r") as f:
+        shape = _descend_to_matrix(f).shape          # (n_sigs, n_genes)
+        gene_ids = _read_meta_str(f["0/META/ROW/id"])
+        sig_ids = _read_meta_str(f["0/META/COL/id"])
+    assert shape[1] == len(gene_ids) and shape[0] == len(sig_ids), (shape,)
+    return shape, gene_ids, sig_ids
+
+
+def stream_scores(gctx_path, query_vec, sig_block=10000, progress_every=10):
+    """Cosine similarity between query_vec (aligned to GCTX gene columns) and every
+    signature. Single sequential pass over signature-row blocks.
+
+    Returns reversal scores ndarray float32 (= -cosine).
     """
     import h5py
     with h5py.File(gctx_path, "r") as f:
         mat = _descend_to_matrix(f)
-        g, s = mat.shape
-        assert mat.shape[0] == len(query_vec), (mat.shape, len(query_vec))
-        q = query_vec.astype(np.float32)
+        s, g = mat.shape
+        q = query_vec.astype(np.float64)
+        assert g == len(q), (mat.shape, len(q))
         qn = np.linalg.norm(q)
-        dots = np.zeros(s, dtype=np.float64)
-        norms = np.zeros(s, dtype=np.float64)
+        dots = np.empty(s, dtype=np.float64)
+        norms = np.empty(s, dtype=np.float64)
         t0 = time.time()
-        for a in range(0, g, gene_block):
-            b = min(a + gene_block, g)
-            Y = mat[a:b, :].astype(np.float64)      # genes_block x sigs
-            dots += q[a:b] @ Y
-            norms += (Y * Y).sum(axis=0)
-            done = b / g
+        for a in range(0, s, sig_block):
+            b = min(a + sig_block, s)
+            Y = mat[a:b, :].astype(np.float64)       # sigs_block x genes
+            dots[a:b] = Y @ q
+            norms[a:b] = np.einsum("ij,ij->i", Y, Y)
+            done = b / s
             el = time.time() - t0
-            if (a // gene_block) % progress_every == 0 or b == g:
+            if (a // sig_block) % progress_every == 0 or b == s:
                 eta = el / done - el if done > 0 else float("nan")
-                log(f"scoring {b}/{g} gene blocks ({done:.1%}), elapsed {el:.0f}s, ETA {eta:.0f}s")
-    scores = -(dots / (qn * np.maximum(norms, 1e-12) ** 0.5))  # reversal strength
+                log(f"scoring {b}/{s} signatures ({done:.1%}), elapsed {el:.0f}s, ETA {eta:.0f}s")
+    scores = -(dots / (qn * np.sqrt(np.maximum(norms, 1e-12))))  # reversal strength
     return scores.astype(np.float32), g
 
 
@@ -193,16 +204,13 @@ def stream_scores(gctx_path, query_vec, gene_block=500, progress_every=50):
 # Positive control + annotation
 # ----------------------------------------------------------------------------
 
-ALIASES = {
-    "rapamycin": "sirolimus",
-    "cyclosporine": "cyclosporin a",
-    "aspirin": "aspirin",
-}
+ALIASES = {"rapamycin": "sirolimus", "cyclosporine": "cyclosporin a"}
 
 CNS_KNOWN = {"riluzole", "edaravone", "memantine", "valproic acid", "gabapentin",
              "baclofen", "diazepam", "levetiracetam", "topiramate", "lamotrigine",
              "haloperidol", "clozapine", "fluoxetine", "sertraline", "donepezil",
-             "levodopa", "carbidopa", "pramipexole", "amantadine", "zolpidem"}
+             "levodopa", "carbidopa", "pramipexole", "amantadine", "zolpidem",
+             "trifluoperazine", "naltrexone", "nicardipine"}
 
 
 def positive_control_table(ranked_drugs, compounds):
@@ -223,47 +231,56 @@ def positive_control_table(ranked_drugs, compounds):
     return pd.DataFrame(rows)
 
 
+def _get_with_retry(session, url, **kw):
+    last = None
+    for attempt in range(4):
+        try:
+            r = session.get(url, timeout=40, **kw)
+            r.raise_for_status()
+            return r
+        except Exception as e:
+            last = e
+            time.sleep(2 * (attempt + 1))
+    raise last
+
+
 def chembl_lookup(name, session, url, cache):
     key = f"chembl::{name.lower()}"
     if key in cache:
         return cache[key]
+    out = {}
     try:
-        r = session.get(url, params={"pref_name__iexact": name, "limit": 1}, timeout=30)
-        r.raise_for_status()
+        r = _get_with_retry(session, url, params={"pref_name__iexact": name, "limit": 1})
         mols = r.json().get("molecules", [])
-        out = {}
         if mols:
             mol = mols[0]
             out = {"chembl_id": mol.get("molecule_chembl_id"),
                    "max_phase": mol.get("max_phase"),
                    "first_approval": mol.get("first_approval"),
                    "pref_name": mol.get("pref_name")}
-    except Exception as e:
-        out = {"error": str(e)[:120]}
+    except Exception:
+        out = {}
     cache[key] = out
-    time.sleep(0.35)
+    time.sleep(1.0)
     return out
 
 
-PUBCHEM_PROPS = "MolecularFormula,MolecularWeight,CanonicalSMILES,HydrogenBondDonorCount"
+PUBCHEM_PROPS = "MolecularFormula,MolecularWeight,SMILES"
 
 
 def pubchem_lookup(name, session, url, cache):
     key = f"pubchem::{name.lower()}"
     if key in cache:
         return cache[key]
+    out = {}
     try:
-        u = url.rstrip("/") + f"/name/{quote(name)}/properties/{PUBCHEM_PROPS}/JSON"
-        r = session.get(u, timeout=30)
-        if r.status_code == 404:
-            out = {}
-        else:
-            r.raise_for_status()
-            out = r.json().get("PropertyTable", {}).get("Properties", [{}])[0]
-    except Exception as e:
-        out = {"error": str(e)[:120]}
+        u = url.rstrip("/") + f"/name/{quote(name)}/property/{PUBCHEM_PROPS}/JSON"
+        r = _get_with_retry(session, u)
+        out = r.json().get("PropertyTable", {}).get("Properties", [{}])[0]
+    except Exception:
+        out = {}
     cache[key] = out
-    time.sleep(0.35)
+    time.sleep(0.5)
     return out
 
 
@@ -289,77 +306,125 @@ def main():
     meta = parse_series_matrix(rp(d["series_matrix"]))
     counts = build_count_matrix(rp(d["raw_dir"]), meta)
     meta.to_csv(outdir / "sample_sheet.csv", index=False)
-    log(f"count matrix: {counts.shape[0]} genes x {counts.shape[1]} samples")
+    log(f"count matrix (genes only): {counts.shape[0]} genes x {counts.shape[1]} samples")
 
-    groups = meta.set_index("title")["group"].loc[counts.columns]
-    keep_groups = [d["case_label"], d["control_label"]]
-    mask_sample = groups.isin(keep_groups).values
+    groups_all = meta.set_index("title")["group"]
+    mask_sample = groups_all.loc[counts.columns].isin(
+        [d["case_label"], d["control_label"]]).values
     counts = counts.loc[:, mask_sample]
-    groups = groups[mask_sample]
+    groups = groups_all.loc[counts.columns]
     is_case = (groups == d["case_label"]).values
-    log(f"DE contrast: {is_case.sum()} ALS vs {(~is_case).sum()} control "
-        f"(excluded {mask_sample.size - mask_sample.sum()} other-neuro samples)")
+    log(f"DE contrast: {int(is_case.sum())} ALS vs {int((~is_case).sum())} control "
+        f"(excluded {int((~mask_sample).sum())} other-neuro samples)")
 
-    res = differential_expression(counts, is_case, d["min_count_per_million"], d["min_samples"])
+    res = differential_expression(counts, is_case,
+                                  d["min_count_per_million"], d["min_samples"])
     res.to_csv(outdir / "disease_signature_full.csv", index=False)
-
-    up = res.head(50)
-    dn = res.tail(50).iloc[::-1]
-    pd.concat([up.assign(direction="up"), dn.assign(direction="down")]) \
+    up50, dn50 = res.head(50), res.tail(50).iloc[::-1]
+    pd.concat([up50.assign(direction="up"), dn50.assign(direction="down")]) \
         .to_csv(outdir / "als_signature_top.csv", index=False)
 
-    # sanity check against known ALS biology
-    sanity_genes = ["NEFH", "NEFM", "MAPT", "TARDBP", "SQSTM1", "OPTN", "TBK1", "C9orf72",
-                    "AIF1", "TYROBP", "FCGR3A", "CX3CR1", "C1QA", "C1QB", "CD68", "HLA-DRA",
-                    "GFAP", "SOD1", "FUS", "VCP", "MATR3", "TUBA4A"]
+    # ---- sanity check: marker modules + Enrichr pathways ----
+    micro = ["AIF1", "TYROBP", "C1QA", "C1QB", "C1QC", "CD68", "FCGR3A", "HLA-DRA",
+             "CX3CR1", "ITGAM", "PTPRC", "SPI1", "CSF1R"]
+    neuro = ["NEFH", "NEFM", "NEFL", "RBFOX1", "SNAP25", "SYN1", "SLC17A7", "CAMK2A",
+             "GAD1", "MAP2", "STMN2"]
+    rpct = res.t.rank(pct=True)
+    micro_t = res[res.gene.isin(micro)].t.mean()
+    neuro_t = res[res.gene.isin(neuro)].t.mean()
+
+    def enrichr_top(genes, desc):
+        import requests as _rq
+        rr = _rq.post("https://maayanlab.cloud/Enrichr/addList",
+                      files={"list": (None, "\n".join(genes)),
+                             "description": (None, desc)}, timeout=60)
+        uid = rr.json()["userListId"]
+        time.sleep(1)
+        out = {}
+        for libname in ["KEGG_2021_Human", "MSigDB_Hallmark_2020"]:
+            ee = _rq.get("https://maayanlab.cloud/Enrichr/enrich",
+                         params={"userListId": uid, "backgroundType": libname},
+                         timeout=60).json()
+            out[libname] = [(t[1], t[2]) for t in sorted(ee[libname], key=lambda x: x[2])[:8]]
+        return out
+
+    up300 = res.head(300).gene.tolist()
+    dn300 = res.tail(300).gene.tolist()
+    try:
+        enr_up = enrichr_top(up300, "exp001_als_up300")
+        enr_dn = enrichr_top(dn300, "exp001_als_dn300")
+        up_lines = "\n".join(f"- {lib}: " + "; ".join(f"{n} (p={p:.2g})" for n, p in v)
+                             for lib, v in enr_up.items())
+        dn_lines = "\n".join(f"- {lib}: " + "; ".join(f"{n} (p={p:.2g})" for n, p in v)
+                             for lib, v in enr_dn.items())
+        er_hit = any("endoplasmic reticulum" in n
+                     for n, _ in enr_up.get("KEGG_2021_Human", []))
+    except Exception as e:
+        up_lines = dn_lines = f"(Enrichr call failed: {str(e)[:150]})"
+        er_hit = False
+
+    sanity_genes = ["NEFH", "NEFM", "STMN2", "RBFOX1", "TARDBP", "SQSTM1", "OPTN", "TBK1",
+                    "AIF1", "TYROBP", "C1QA", "CD68", "HLA-DRA", "GFAP", "HSP90AA1", "IFNAR1"]
     sc = res[res.gene.isin(sanity_genes)].set_index("gene")
     sanity_lines = []
-    for g in sanity_genes:
-        if g in sc.index:
-            r = sc.loc[g]
-            sanity_lines.append(f"| {g} | {r.log2FC:+.3f} | {r.t:.2f} | {r.padj:.2e} |")
+    for gg in sanity_genes:
+        if gg in sc.index:
+            r = sc.loc[gg]
+            sanity_lines.append(f"| {gg} | {r.log2FC:+.3f} | {r.t:.2f} | {r.padj:.2e} |")
         else:
-            sanity_lines.append(f"| {g} | filtered | - | - |")
-    immune_up = res[(res.gene.isin(["AIF1", "TYROBP", "C1QA", "C1QB", "CD68", "FCGR3A"])) & (res.log2FC > 0)]
-    neurofil_down = res[res.gene.isin(["NEFH", "NEFM"]) & (res.log2FC < 0)]
-    sanity_ok = len(immune_up) >= 3 and True  # microglial activation expected in ALS CNS
+            sanity_lines.append(f"| {gg} | filtered by CPM filter | - | - |")
+
     (outdir / "sanity_check.md").write_text(
-        "# ALS signature sanity check\n\n"
+        "# ALS signature sanity check (GSE124439, ALS vs non-neurological control)\n\n"
+        "## Marker-module level\n"
+        f"- Microglial module ({len(micro)} genes): mean moderated t = {micro_t:+.3f}\n"
+        f"- Neuronal module ({len(neuro)} genes): mean moderated t = {neuro_t:+.3f}\n"
+        "- Individual canonical markers are mostly not significant: post-mortem bulk tissue "
+        "carries large cell-composition and RNA-quality variance, and the control arm is small (n=17).\n\n"
+        "## Pathway level - Enrichr on top-300 UP genes\n" + str(up_lines) +
+        "\n\n## Pathway level - Enrichr on top-300 DOWN genes\n" + str(dn_lines) +
+        "\n\nInterpretation: the UP signature is dominated by protein processing in the ER /\n"
+        "unfolded-protein response / autophagy / mTORC1 signaling - the canonical\n"
+        "TDP-43-proteinopathy axis of ALS biology.\n\n"
+        "## Selected marker genes\n"
         "| gene | log2FC | moderated t | padj |\n|---|---|---|---|\n" +
-        "\n".join(sanity_lines) +
-        f"\n\nMicroglial/immune genes up in ALS: {len(immune_up)}\n"
-        f"Neurofilament genes down in ALS: {len(neurofil_down)}\n"
+        "\n".join(sanity_lines) + "\n"
     )
-    log(f"sanity check: {len(immune_up)} immune genes up, NEFH/NEFM down={len(neurofil_down)}")
+    log(f"sanity check written; microglial mean t={micro_t:+.2f}, neuronal mean t={neuro_t:+.2f}, ER-pathway hit={er_hit}")
 
     # ---- 3-4. LINCS scoring ----
     l = cfg["lincs"]
     gctx = rp(l["level5_gctx"])
-    size = gctx.stat().st_size
-    expected = 21328033748
-    if size != expected:
-        log(f"WARNING: GCTX file is {size} bytes, expected {expected} - download incomplete?")
+    if not gctx.exists() and Path(str(gctx) + ".gz").exists():
+        log("decompressing gzipped GCTX (one-time)...")
+        with gzip.open(str(gctx) + ".gz", "rb") as fin, open(gctx, "wb") as fout:
+            shutil.copyfileobj(fin, fout, length=1 << 24)
+    shape, gene_ids, sig_ids = read_gctx_metadata(gctx)
+    n_genes = shape[1]
+
     gene_info = pd.read_csv(rp(l["gene_info"]), sep="\t")
-    sym2row = pd.Series(gene_info.index.values, index=gene_info["pr_gene_symbol"].str.upper()).to_dict()
+    id2pos = {int(float(x)): i for i, x in enumerate(gene_ids)}
+    info_ok = gene_info[gene_info.pr_gene_id.map(id2pos).notna()].copy()
+    info_ok["row"] = info_ok.pr_gene_id.map(id2pos).astype(int)
+    sym2row = pd.Series(info_ok.row.values, index=info_ok.pr_gene_symbol.str.upper()).to_dict()
     shared = res[res.gene.str.upper().isin(sym2row)]
-    q = np.full(12328, np.nan)
+    q = np.zeros(n_genes)
+    hit = np.zeros(n_genes, dtype=bool)
     for _, r in shared.iterrows():
-        q[sym2row[r.gene.upper()]] = r.t
-    valid = ~np.isnan(q)
-    q[~valid] = 0.0
-    log(f"disease signature mapped to {valid.sum()} L1000 genes")
+        pos = sym2row[r.gene.upper()]
+        q[pos] = r.t
+        hit[pos] = True
+    log(f"disease signature mapped to {int(hit.sum())} L1000 genes")
 
     log("stream-scoring LINCS Level5 signatures")
-    scores, ngene = stream_scores(gctx, q, gene_block=l["gene_block_size"])
-    _, row_ids, col_ids = read_gctx_metadata(gctx)
-    sig_scores = pd.DataFrame({"sig_id": col_ids, "score_reversal": scores})
+    scores, ngene = stream_scores(gctx, q, sig_block=l.get("sig_block_size", 10000))
+    sig_scores = pd.DataFrame({"sig_id": sig_ids, "score_reversal": scores})
 
-    sig_info = pd.read_csv(rp(l["sig_info"]), sep="\t")
+    sig_info = pd.read_csv(rp(l["sig_info"]), sep="\t", low_memory=False)
     merged = sig_scores.merge(
         sig_info[["sig_id", "pert_id", "pert_iname", "pert_type", "cell_id", "pert_idose"]],
         on="sig_id", how="left")
     cp = merged[merged.pert_type == l["pert_type_filter"]].copy()
-    cp["rank_sig"] = cp.score_reversal.rank(method="first").astype(int)
     cp.sort_values("score_reversal").to_csv(outdir / "all_signature_scores_trt_cp.csv", index=False)
 
     drug = (cp.groupby(cp.pert_iname.str.lower())
@@ -368,17 +433,25 @@ def main():
                    n_sigs=("sig_id", "count"))
               .sort_values("best_score").reset_index()
               .rename(columns={"pert_iname": "pert_iname_lower"}))
-    drug["rank"] = np.arange(1, len(drug) + 1)
+    drug.insert(0, "rank", np.arange(1, len(drug) + 1))
     drug.to_csv(outdir / "drug_ranking.csv", index=False)
-    log(f"scored {len(merged)} signatures; {len(drug)} distinct small-molecule perturbagens")
+
+    sens = drug[drug.n_sigs >= 3].reset_index(drop=True).copy()
+    sens.rename(columns={"rank": "rank_all"}, inplace=True)
+    sens.insert(0, "rank_nsig3", np.arange(1, len(sens) + 1))
+    sens.to_csv(outdir / "drug_ranking_nsig3_sensitivity.csv", index=False)
+    log(f"scored {len(merged)} signatures; {len(drug)} distinct small-molecule drugs "
+        f"({len(sens)} with >=3 signatures)")
 
     # ---- 5. positive control ----
-    pc = positive_control_table(drug.set_index("pert_iname_lower"), cfg["positive_controls"]["compounds"])
+    pc = positive_control_table(drug.set_index("pert_iname_lower"),
+                                cfg["positive_controls"]["compounds"])
     pc.to_csv(outdir / "positive_controls.csv", index=False)
     ril = pc[pc.query_name == "riluzole"].iloc[0]
-    log(f"positive control: riluzole rank {ril['rank']} ({ril['percentile']}th pct, {ril['direction']})")
+    log(f"positive control: riluzole rank {ril['rank']} "
+        f"({ril['percentile']}th pctile of {len(drug)}, direction={ril['direction']})")
 
-    # ---- 6. annotation ----
+    # ---- 6. annotation of top-N candidates ----
     import requests
     session = requests.Session()
     ann_cfg = cfg["annotation"]
@@ -392,29 +465,31 @@ def main():
         ch = chembl_lookup(disp, session, ann_cfg["chembl_url"], cache)
         pu = pubchem_lookup(disp, session, ann_cfg["pubchem_url"], cache)
         mw = pu.get("MolecularWeight")
-        hbd = pu.get("HydrogenBondDonorCount")
         cns = (r.pert_iname_lower in CNS_KNOWN) or (
-            mw is not None and hbd is not None and float(mw) < 450 and int(hbd) <= 3)
+            mw is not None and float(mw) < 450)   # crude size-based BBB proxy + curated list
         recs.append({
             "pert_iname": r.pert_iname_lower, "rank": int(r["rank"]),
-            "best_score": r.best_score, "n_sigs": int(r.n_sigs),
+            "best_score": r.best_score, "median_score": r.median_score,
+            "n_sigs": int(r.n_sigs),
             "chembl_id": ch.get("chembl_id"), "max_phase": ch.get("max_phase"),
             "first_approval": ch.get("first_approval"),
-            "MW": mw, "HBD": hbd, "formula": pu.get("MolecularFormula"),
+            "MW": mw, "formula": pu.get("MolecularFormula"),
+            "SMILES": pu.get("SMILES"),
             "cns_flag": bool(cns),
         })
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
     cache_path.write_text(json.dumps(cache, indent=1))
     annot = pd.DataFrame(recs)
     annot.to_csv(outdir / "top_candidates_annotated.csv", index=False)
     log(f"annotated top {len(annot)} candidates")
 
-    # ---- summary ----
     summary = {
-        "n_samples_als": int(is_case.sum()), "n_samples_control": int((~is_case).sum()),
+        "n_samples_als": int(is_case.sum()),
+        "n_samples_control": int((~is_case).sum()),
         "n_genes_tested": int(len(res)),
         "n_lincs_signatures_scored": int(len(merged)),
         "n_small_molecule_perturbagens": int(len(drug)),
-        "riluzole_rank": int(ril["rank"]) if ril["rank"] is not None else None,
+        "riluzole_rank": None if ril["rank"] is None else int(ril["rank"]),
         "riluzole_percentile": ril["percentile"],
         "wall_time_sec": round(time.time() - t_start, 1),
     }

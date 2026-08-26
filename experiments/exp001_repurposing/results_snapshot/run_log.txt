@@ -1,0 +1,14 @@
+[21:03:44] parsing GSE124439 metadata
+[21:03:47] count matrix (genes only): 27961 genes x 176 samples
+[21:03:47] DE contrast: 145 ALS vs 17 control (excluded 14 other-neuro samples)
+[21:03:51] sanity check written; microglial mean t=-0.37, neuronal mean t=-0.01, ER-pathway hit=True
+[21:03:51] disease signature mapped to 10389 L1000 genes
+[21:03:51] stream-scoring LINCS Level5 signatures
+[21:03:53] scoring 10000/473647 signatures (2.1%), elapsed 2s, ETA 82s
+[21:03:56] scoring 110000/473647 signatures (23.2%), elapsed 5s, ETA 17s
+[21:04:39] scoring 210000/473647 signatures (44.3%), elapsed 48s, ETA 60s
+[21:04:44] scoring 310000/473647 signatures (65.4%), elapsed 53s, ETA 28s
+[21:04:47] scoring 410000/473647 signatures (86.6%), elapsed 55s, ETA 9s
+[21:04:49] scoring 473647/473647 signatures (100.0%), elapsed 58s, ETA 0s
+[21:04:52] scored 473647 signatures; 19811 distinct small-molecule drugs (15059 with >=3 signatures)
+[21:04:52] positive control: riluzole rank 2758.0 (13.9th pctile of 19811, direction=neutral)

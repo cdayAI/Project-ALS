@@ -1,0 +1,10 @@
+{
+  "n_samples_als": 145,
+  "n_samples_control": 17,
+  "n_genes_tested": 17729,
+  "n_lincs_signatures_scored": 473647,
+  "n_small_molecule_perturbagens": 19811,
+  "riluzole_rank": 2758,
+  "riluzole_percentile": 13.9,
+  "wall_time_sec": 882.9
+}
