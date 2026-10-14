@@ -1,0 +1,91 @@
+{
+  "repository": "https://github.com/cdayAI/Project-ALS.git",
+  "label": "Project-ALS",
+  "base_head": "84f0867e8c11be33fad3aecce1357d6de1622805",
+  "original_branch": "refs/heads/research/pilot-methods-validity",
+  "tracked_source_paths": [
+    "AGENTS.md"
+  ],
+  "untracked_source_paths": [
+    "research/05_pilot_methods_validity.md",
+    "research/06_ai_methods_evidence_audit.md",
+    "research/07_repository_diligence.md"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 2795,
+      "sha256": "c54567cf042115cb1c446fee738b9cf32d4ab99f144d793b11232c706982c890",
+      "normalized_git_blob": "dfe2fe6a526ba9917135c51e4c1ae0c9fdf55d35",
+      "untracked": false
+    },
+    {
+      "path": "research/05_pilot_methods_validity.md",
+      "bytes": 44391,
+      "sha256": "5919e018a43a12abb531d1c01e79fef0bbda5c98d642c45f7a0545a59856f205",
+      "normalized_git_blob": "f45c1f6f481fdc3e6f849fafa0a7124732f8f35e",
+      "untracked": true
+    },
+    {
+      "path": "research/06_ai_methods_evidence_audit.md",
+      "bytes": 38355,
+      "sha256": "d68e0a7d4b295bd480e0f54c824d944c0462ef51fa617112e52193b43a2f8d4e",
+      "normalized_git_blob": "21ce6e9da95b75209a9f0a0fbfdb6d38f3fb675b",
+      "untracked": true
+    },
+    {
+      "path": "research/07_repository_diligence.md",
+      "bytes": 37075,
+      "sha256": "4d93aef8a9e4297bfab1fb41bb282b98374924039925341c8e9a597652d5cfb2",
+      "normalized_git_blob": "237231fe37553db3f4beb51efb072ec444a20110",
+      "untracked": true
+    }
+  ],
+  "patches": [
+    {
+      "path": "staged-source.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "unstaged-source.patch",
+      "bytes": 5345,
+      "sha256": "3ba5725348c644c51165a83d5c07b4c50b8ac86658607d62f18b7d202e077588"
+    }
+  ],
+  "retained_local_exclusions": [],
+  "ignored_files": "Not included. Originals retained; this is not a complete workspace backup.",
+  "validation": {
+    "pinned_base_checkout": "84f0867e8c11be33fad3aecce1357d6de1622805",
+    "staged_then_unstaged_apply_passed": true,
+    "all_selected_normalized_contents_match": true,
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "normalized_git_blob_matches": true,
+        "restored_git_blob": "dfe2fe6a526ba9917135c51e4c1ae0c9fdf55d35",
+        "raw_bytes_match": true
+      },
+      {
+        "path": "research/05_pilot_methods_validity.md",
+        "normalized_git_blob_matches": true,
+        "restored_git_blob": "f45c1f6f481fdc3e6f849fafa0a7124732f8f35e",
+        "raw_bytes_match": true
+      },
+      {
+        "path": "research/06_ai_methods_evidence_audit.md",
+        "normalized_git_blob_matches": true,
+        "restored_git_blob": "21ce6e9da95b75209a9f0a0fbfdb6d38f3fb675b",
+        "raw_bytes_match": true
+      },
+      {
+        "path": "research/07_repository_diligence.md",
+        "normalized_git_blob_matches": true,
+        "restored_git_blob": "237231fe37553db3f4beb51efb072ec444a20110",
+        "raw_bytes_match": true
+      }
+    ],
+    "high_confidence_secret_pattern_flags": []
+  },
+  "scope": "Recovery artifact only. Application behavior and scientific/trading claims have not been newly validated. Never execute trading or broker entry points merely to restore these files."
+}
